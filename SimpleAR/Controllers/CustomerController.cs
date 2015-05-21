@@ -13,9 +13,6 @@ namespace SimpleAR.Controllers
     {
         public CustomerController()
         {
-            CustomerManager.SaveCustomer(new Customer() { Name = "Blarg" });
-            CustomerManager.SaveCustomer(new Customer() { Name = "Blarg 1" });
-            CustomerManager.SaveCustomer(new Customer() { Name = "Blarg 2" });
             Customers = CustomerManager.GetCustomers();
             AddNewCustomerCommand = new DelegateCommand(HandleAddNewCustomerCommand);
             DeleteCustomerCommand = new DelegateCommand(HandleDeleteCustomerCommand);
