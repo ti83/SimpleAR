@@ -8,9 +8,12 @@
         </ResourceDictionary>
     </Window.Resources>
     <TabControl>
+        <TabItem Header="Services">
+
+        </TabItem>
         <TabItem Header="Customers">
             <Views:CustomerView />
         </TabItem>
-        
+
     </TabControl>
 </Window>
