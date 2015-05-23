@@ -14,7 +14,7 @@
 
     <TabControl>
         <TabItem Header="Services">
-
+            <Views:ServiceView DataContext="{Binding ServiceTab}"/>
         </TabItem>
         <TabItem Header="Customers">
             <Views:CustomerView DataContext="{Binding CustomersTab}"/>

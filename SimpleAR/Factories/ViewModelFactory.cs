@@ -18,5 +18,10 @@ namespace SimpleAR.Factories
                 CustomerName = customer.Name
             };
         }
+
+        internal static ServiceViewModel CreateServiceViewModel(IServiceController controller)
+        {
+            return new ServiceViewModel(controller);
+        }
     }
 }

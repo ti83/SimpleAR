@@ -11,3 +11,4 @@ C:\Users\ti83_000\Documents\Visual Studio 2013\Projects\SimpleAR\SimpleAR_DAL\bi
 C:\Users\ti83_000\Documents\Visual Studio 2013\Projects\SimpleAR\SimpleAR_DAL\bin\Debug\System.Data.SQLite.xml
 C:\Users\ti83_000\Documents\Visual Studio 2013\Projects\SimpleAR\SimpleAR_DAL\obj\Debug\SimpleAR_DAL.dll
 C:\Users\ti83_000\Documents\Visual Studio 2013\Projects\SimpleAR\SimpleAR_DAL\obj\Debug\SimpleAR_DAL.pdb
+C:\Users\ti83_000\Documents\Visual Studio 2013\Projects\SimpleAR\SimpleAR_DAL\obj\Debug\SimpleAR_DAL.csprojResolveAssemblyReference.cache

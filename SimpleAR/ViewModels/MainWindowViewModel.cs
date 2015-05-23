@@ -12,6 +12,7 @@ namespace SimpleAR.ViewModels
         /// </summary>
         public MainWindowViewModel()
         {
+            InitializeServiceTab();
             InitializeCustomerTab();
         }
 
@@ -21,6 +22,20 @@ namespace SimpleAR.ViewModels
         public CustomersViewModel CustomersTab { get; private set; }
 
         /// <summary>
+        /// Gets the service tab.
+        /// </summary>
+        public ServiceViewModel ServiceTab { get; private set; }
+
+        /// <summary>
+        /// The initialize service tab.
+        /// </summary>
+        private void InitializeServiceTab()
+        {
+            var controller = ControllerFactory.CreateServiceController();
+            ServiceTab = ViewModelFactory.CreateServiceViewModel(controller);
+        }
+
+        /// <summary>
         /// The initialize customer tab.
         /// </summary>
         private void InitializeCustomerTab()
@@ -28,6 +43,7 @@ namespace SimpleAR.ViewModels
             var controller = ControllerFactory.CreateCustomerController();
             CustomersTab = ViewModelFactory.CreateCustomerViewModel(controller);
         }
+
 
     }
 }

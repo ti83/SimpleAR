@@ -17,12 +17,12 @@ namespace SimpleAR_DAL.Managers
             }
             else
             {
-                var dbCustomer = context.Customers.Single(c => c.Id == customer.Id);
-                if (dbCustomer == null)
+                var dbRecord = context.Customers.Single(c => c.Id == customer.Id);
+                if (dbRecord == null)
                 {
                     throw new Exception(String.Format("Couldn't find a customer with the id of {0}",customer.Id));
                 }
-                dbCustomer.Name = customer.Name;
+                dbRecord.Name = customer.Name;
             }
             context.SaveChanges();
         }

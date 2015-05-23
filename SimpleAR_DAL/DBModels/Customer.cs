@@ -1,9 +1,4 @@
-﻿
-
-
-//using System.Data.Linq.Mapping;
-
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SimpleAR_DAL.DBModels
 {

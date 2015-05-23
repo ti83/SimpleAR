@@ -14,9 +14,20 @@ namespace SimpleAR.Factories
         /// <returns>
         /// The <see cref="ICustomerController"/>.
         /// </returns>
-        public static ICustomerController CreateCustomerController()
+        internal static ICustomerController CreateCustomerController()
         {
             return new CustomerController();
+        }
+
+        /// <summary>
+        /// The create service controller.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="IServiceController"/>.
+        /// </returns>
+        internal static IServiceController CreateServiceController()
+        {
+            return new ServiceController();
         }
     }
 }
