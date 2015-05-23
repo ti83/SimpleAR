@@ -4,78 +4,55 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 using SimpleAR.Common;
+using SimpleAR.Interfaces;
 using SimpleAR_DAL.DBModels;
 
 
 namespace SimpleAR.Controllers
 {
-    public class CustomerController : INotifyPropertyChanged
+    public class CustomerController :  ICustomerController
     {
-        public CustomerController()
-        {
-            Customers = CustomerManager.GetCustomers();
-            AddNewCustomerCommand = new DelegateCommand(HandleAddNewCustomerCommand);
-            DeleteCustomerCommand = new DelegateCommand(HandleDeleteCustomerCommand);
-        }
-
         public List<Customer> Customers { get; set; }
         public string NewCustomerName { get; set; }
 
-#region ICommand Properties
 
-        public ICommand AddNewCustomerCommand { get; private set; }
-        public ICommand DeleteCustomerCommand { get; private set; }
-
-#endregion
-
-        #region ICommand Methods
-
-        private void HandleAddNewCustomerCommand(object obj)
+        public CustomerController()
         {
-            if (string.IsNullOrWhiteSpace(NewCustomerName))
-            {
-                MessageBox.Show("Please specify a customer name.");
-                return;
-            }
+            LoadCustomersFromDB();
+        }
+
+        public void AddNewCustomer()
+        {
             CustomerManager.SaveCustomer(new Customer() { Name = NewCustomerName });
             Customers = CustomerManager.GetCustomers();
             NewCustomerName = string.Empty;
-            OnPropertyChanged("NewCustomerName");
-            OnPropertyChanged("Customers");
+
         }
 
-        private void HandleDeleteCustomerCommand(object obj)
+        public void DeleteCustomer(Customer customer)
         {
-            var customer = obj as Customer;
-            if (customer == null) return;
-
             if (!customer.Id.HasValue)
             {
                 Customers.Remove(customer);
             }
             else
             {
-                var result = MessageBox.Show(string.Format("Are you sure you want to delete {0}?  This will remove all records associated with them.",customer.Name), "Delete Customer?", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (result == MessageBoxResult.Yes)
-                {
-                    CustomerManager.DeleteCustomer(customer.Id.Value);
-                    Customers = CustomerManager.GetCustomers();
-                }
+                CustomerManager.DeleteCustomer(customer.Id.Value);
+                LoadCustomersFromDB();
             }
-            OnPropertyChanged("Customers");
+
         }
 
-        #endregion
-
-        #region Implement INotifyPropertyChanged
-
-        private void OnPropertyChanged(string propertyName)
+        public void SaveCustomer(Customer customer)
         {
-            if (PropertyChanged != null) PropertyChanged(this,new PropertyChangedEventArgs(propertyName));
+            CustomerManager.SaveCustomer(customer);
+            LoadCustomersFromDB();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        private void LoadCustomersFromDB()
+        {
+            Customers = CustomerManager.GetCustomers();        
+        }
 
-        #endregion
     }
 }

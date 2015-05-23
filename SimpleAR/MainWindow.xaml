@@ -1,18 +1,23 @@
 ﻿<Window xmlns:Views="clr-namespace:SimpleAR.Views"  x:Class="SimpleAR.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="SimpleAR" Height="600" Width="800">
+        xmlns:viewModels="clr-namespace:SimpleAR.ViewModels"
+        Title="SimpleAR" Height="600" Width="800" Icon="Images/Fatcow-Farm-Fresh-Account-balances.ico">
     <Window.Resources>
         <ResourceDictionary>
             <FontFamily x:Key="FontAwesome">/SimpleAR;component/Fonts/#FontAwesome</FontFamily>
         </ResourceDictionary>
     </Window.Resources>
+    <Window.DataContext>
+        <viewModels:MainWindowViewModel/>
+    </Window.DataContext>
+
     <TabControl>
         <TabItem Header="Services">
 
         </TabItem>
         <TabItem Header="Customers">
-            <Views:CustomerView />
+            <Views:CustomerView DataContext="{Binding CustomersTab}"/>
         </TabItem>
 
     </TabControl>

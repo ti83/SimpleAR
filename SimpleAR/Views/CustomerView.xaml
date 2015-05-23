@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:contorllers="clr-namespace:SimpleAR.Controllers"
+             xmlns:viewModels="clr-namespace:SimpleAR.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600">
     <UserControl.Resources>
@@ -12,7 +12,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <UserControl.DataContext>
-        <contorllers:CustomerController/>
+        <viewModels:CustomersViewModel/>
     </UserControl.DataContext>
     <Grid Margin="5">
         <Grid.RowDefinitions>
@@ -34,7 +34,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Background="Transparent" BorderBrush="Transparent" FontSize="18" Content="&#xf044;" Margin="5"  Padding="5" FontFamily="{StaticResource FontAwesome}" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="Edit Customer"/>
+                                <Button Background="Transparent" BorderBrush="Transparent" FontSize="18" Content="&#xf044;" Margin="5"  Padding="5" FontFamily="{StaticResource FontAwesome}" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="Edit Customer" Command="{Binding DataContext.EditCustomerCommand,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
