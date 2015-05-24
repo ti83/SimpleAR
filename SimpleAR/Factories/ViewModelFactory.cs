@@ -33,5 +33,10 @@ namespace SimpleAR.Factories
                 UnitType = service.UnitType
             };
         }
+
+        internal static LedgerViewModel CreateLedgerViewModel(ILedgerController controller)
+        {
+            return new LedgerViewModel(controller);
+        }
     }
 }

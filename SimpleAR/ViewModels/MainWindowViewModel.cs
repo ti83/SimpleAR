@@ -1,4 +1,7 @@
-﻿using SimpleAR.Factories;
+﻿using System;
+using System.Configuration;
+using System.Runtime.CompilerServices;
+using SimpleAR.Factories;
 
 namespace SimpleAR.ViewModels
 {
@@ -12,8 +15,27 @@ namespace SimpleAR.ViewModels
         /// </summary>
         public MainWindowViewModel()
         {
+            if (CheckIfVisualStudioRunning())
+            {
+                return;
+            }
+
             InitializeServiceTab();
             InitializeCustomerTab();
+            InitializeLedgerTab();
+        }
+
+        private bool CheckIfVisualStudioRunning()
+        {
+            try
+            {
+                var setting = ConfigurationManager.ConnectionStrings["MyDbCS"].ConnectionString;
+            }
+            catch (Exception)
+            {
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -25,6 +47,11 @@ namespace SimpleAR.ViewModels
         /// Gets the service tab.
         /// </summary>
         public ServiceViewModel ServiceTab { get; private set; }
+
+        /// <summary>
+        /// Gets the ledger tab.
+        /// </summary>
+        public LedgerViewModel LedgerTab { get; private set; }
 
         /// <summary>
         /// The initialize service tab.
@@ -44,6 +71,15 @@ namespace SimpleAR.ViewModels
             CustomersTab = ViewModelFactory.CreateCustomerViewModel(controller);
         }
 
+        /// <summary>
+        /// The initialize ledger tab.
+        /// </summary>
+        private void InitializeLedgerTab()
+        {
+            var controller = ControllerFactory.CreateLedgerController();
+            LedgerTab = ViewModelFactory.CreateLedgerViewModel(controller);
+
+        }
 
     }
 }

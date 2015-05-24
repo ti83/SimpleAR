@@ -29,5 +29,16 @@ namespace SimpleAR.Factories
         {
             return new ServiceController();
         }
+
+        /// <summary>
+        /// The create ledger controller.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="ILedgerController"/>.
+        /// </returns>
+        internal static ILedgerController CreateLedgerController()
+        {
+            return new LedgerController();
+        }
     }
 }
