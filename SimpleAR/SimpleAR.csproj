@@ -78,6 +78,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="DialogService\CustomerDialogs.cs" />
+    <Compile Include="DialogService\ServiceDialogs.cs" />
     <Compile Include="Factories\ControllerFactory.cs" />
     <Compile Include="Factories\ViewFactory.cs" />
     <Compile Include="Factories\ViewModelFactory.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Interfaces\IServiceController.cs" />
     <Compile Include="ViewModels\CustomersViewModel.cs" />
     <Compile Include="ViewModels\EditCustomerViewModel.cs" />
+    <Compile Include="ViewModels\EditServiceViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\ServiceViewModel.cs" />
     <Compile Include="Views\CustomerView.xaml.cs">
@@ -92,6 +94,9 @@
     </Compile>
     <Compile Include="Views\EditCustomerView.xaml.cs">
       <DependentUpon>EditCustomerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditServiceView.xaml.cs">
+      <DependentUpon>EditServiceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ServiceView.xaml.cs">
       <DependentUpon>ServiceView.xaml</DependentUpon>
@@ -113,6 +118,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EditCustomerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditServiceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

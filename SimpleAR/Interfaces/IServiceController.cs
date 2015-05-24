@@ -11,7 +11,8 @@ namespace SimpleAR.Interfaces
     {
         List<Service> Services { get; set; }
         string NewServiceName { get; set; }
-        decimal NewServiceCost { get; set; }
+        decimal? NewPricePerUnit { get; set; }
+        string NewUnitType { get; set; }
 
         void AddNewService();
 

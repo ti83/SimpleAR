@@ -2,11 +2,6 @@
 
 namespace SimpleAR_DAL.DBModels
 {
-//    CREATE TABLE `Service` (
-//    `Id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-//    `ServiceName`	TEXT,
-//    `Cost`	REAL
-//     );
     [Table("Service")]
     public class Service
     {
@@ -16,7 +11,10 @@ namespace SimpleAR_DAL.DBModels
         [Column("ServiceName")]
         public string ServiceName { get; set; }
 
-        [Column("Cost")]
-        public decimal Cost { get; set; }
+        [Column("PricePerUnit")]
+        public decimal PricePerUnit { get; set; }
+
+        [Column("UnitType")]
+        public string UnitType { get; set; }
     }
 }

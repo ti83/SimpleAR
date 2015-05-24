@@ -6,12 +6,12 @@ namespace SimpleAR.Factories
 {
     class ViewModelFactory
     {
-        public static CustomersViewModel CreateCustomerViewModel(ICustomerController controller)
+        internal static CustomersViewModel CreateCustomerViewModel(ICustomerController controller)
         {
             return new CustomersViewModel(controller);
         }
 
-        public static EditCustomerViewModel CreateEditCustomerViewModel(Customer customer)
+        internal static EditCustomerViewModel CreateEditCustomerViewModel(Customer customer)
         {
             return new EditCustomerViewModel()
             {
@@ -22,6 +22,16 @@ namespace SimpleAR.Factories
         internal static ServiceViewModel CreateServiceViewModel(IServiceController controller)
         {
             return new ServiceViewModel(controller);
+        }
+
+        internal static EditServiceViewModel CreatedEditServiceViewModel(Service service)
+        {
+            return new EditServiceViewModel()
+            {
+                ServiceName = service.ServiceName,
+                PricePerUnit = service.PricePerUnit,
+                UnitType = service.UnitType
+            };
         }
     }
 }

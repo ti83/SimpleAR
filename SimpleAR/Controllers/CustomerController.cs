@@ -24,7 +24,7 @@ namespace SimpleAR.Controllers
         public void AddNewCustomer()
         {
             CustomerManager.SaveCustomer(new Customer() { Name = NewCustomerName });
-            Customers = CustomerManager.GetCustomers();
+            LoadCustomersFromDB();
             NewCustomerName = string.Empty;
 
         }

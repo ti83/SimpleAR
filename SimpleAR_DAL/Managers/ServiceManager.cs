@@ -22,8 +22,9 @@ namespace SimpleAR_DAL.Managers
                 {
                     throw new Exception(String.Format("Couldn't find a service with the id of {0}", service.Id));
                 }
-                dbRecord.ServiceName = dbRecord.ServiceName;
-                dbRecord.Cost = dbRecord.Cost;
+                dbRecord.ServiceName = service.ServiceName;
+                dbRecord.PricePerUnit = service.PricePerUnit;
+                dbRecord.UnitType = service.UnitType;
             }
             context.SaveChanges();
         }
