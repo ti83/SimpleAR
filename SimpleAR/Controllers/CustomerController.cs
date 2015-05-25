@@ -40,7 +40,6 @@ namespace SimpleAR.Controllers
                 GlobalLists.Customers.Remove(customer);
                 CustomerManager.DeleteCustomer(customer.Id.Value);
             }
-
         }
 
         public void SaveCustomer(Customer customer)

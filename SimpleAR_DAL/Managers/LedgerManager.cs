@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Common.CommandTrees;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,13 +36,19 @@ namespace SimpleAR_DAL.Managers
             context.SaveChanges();
         }
 
-        public static List<Ledger> GetLedgerEntries()
+        public static List<Ledger> GetLedgerEntries(DateTime startDate, DateTime endDate)
         {
+            var start = startDate.ToFileTime().ToString();
+            var end = endDate.ToFileTime().ToString();
             var context = ManagerFactories.CreateContextManager();
-            return context.LedgerRecords.ToList();
+
+            var result = from l in context.LedgerRecords
+                where string.Compare(l.DateOfService, start) >= 0 && string.Compare(l.DateOfService, end) <= 0
+                select l;
+            return result.ToList();
         }
 
-        public static void DeleteLedgerIt(int id)
+        public static void DeleteLedgerItem(int id)
         {
             var context = ManagerFactories.CreateContextManager();
             var ledger = context.LedgerRecords.FirstOrDefault(c => c.Id == id);

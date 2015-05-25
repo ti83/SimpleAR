@@ -38,5 +38,10 @@ namespace SimpleAR.Factories
         {
             return new LedgerViewModel(controller);
         }
+
+        internal static EditLedgerRecordViewModel CreateEditLedgerRecordViewModel(Ledger ledger)
+        {
+            return new EditLedgerRecordViewModel(ledger);
+        }
     }
 }

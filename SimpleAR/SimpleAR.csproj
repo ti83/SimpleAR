@@ -81,6 +81,7 @@
     <Compile Include="Controllers\LedgerController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="DialogService\CustomerDialogs.cs" />
+    <Compile Include="DialogService\LedgerDialogs.cs" />
     <Compile Include="DialogService\ServiceDialogs.cs" />
     <Compile Include="Factories\ControllerFactory.cs" />
     <Compile Include="Factories\ViewFactory.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Interfaces\IServiceController.cs" />
     <Compile Include="ViewModels\CustomersViewModel.cs" />
     <Compile Include="ViewModels\EditCustomerViewModel.cs" />
+    <Compile Include="ViewModels\EditLedgerRecordViewModel.cs" />
     <Compile Include="ViewModels\LedgerViewModel.cs" />
     <Compile Include="ViewModels\EditServiceViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -99,6 +101,9 @@
     </Compile>
     <Compile Include="Views\EditCustomerView.xaml.cs">
       <DependentUpon>EditCustomerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditLedgerRecordView.xaml.cs">
+      <DependentUpon>EditLedgerRecordView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditServiceView.xaml.cs">
       <DependentUpon>EditServiceView.xaml</DependentUpon>
@@ -126,6 +131,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EditCustomerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditLedgerRecordView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

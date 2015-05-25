@@ -18,5 +18,16 @@ namespace SimpleAR.Interfaces
 
         DateTime? NewDOS { get; set; }
 
+        DateTime? LedgerStartDate { get; set; }
+
+        DateTime? LedgerEndDate { get; set; }
+
+        void AddNewLedgerRecord();
+
+        void DeleteLedger(Ledger ledger);
+
+        void UpdateFilter();
+
+        void SaveLedgerRecord(Ledger ledger);
     }
 }

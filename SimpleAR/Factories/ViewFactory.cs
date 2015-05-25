@@ -20,5 +20,10 @@ namespace SimpleAR.Factories
         {
             return new EditServiceView() { DataContext = viewModel };
         }
+
+        internal static EditLedgerRecordView CreateEditLedgerRecordView(EditLedgerRecordViewModel viewModel)
+        {
+            return new EditLedgerRecordView() { DataContext = viewModel };
+        }
     }
 }

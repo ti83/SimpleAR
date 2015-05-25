@@ -83,7 +83,6 @@ namespace SimpleAR.ViewModels
             }
             Controller.AddNewCustomer();
             OnPropertyChanged("NewCustomerName");
-            OnPropertyChanged("Customers");
         }
 
         private void HandleDeleteCustomerCommand(object obj)
@@ -97,7 +96,6 @@ namespace SimpleAR.ViewModels
                 Controller.DeleteCustomer(customer);
             }
 
-            OnPropertyChanged("Customers");
         }
 
         private void HandleEditCustomerCommand(object obj)
@@ -111,7 +109,6 @@ namespace SimpleAR.ViewModels
             if (CustomerDialogs.EditCustomer(customer))
             {
                 Controller.SaveCustomer(customer);
-                OnPropertyChanged("Customers");
             }
         }
 
