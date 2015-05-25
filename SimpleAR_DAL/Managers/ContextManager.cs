@@ -8,5 +8,6 @@ namespace SimpleAR_DAL.Managers
         public ContextManager() : base("name=MyDbCS") { }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Service> Services { get; set; }
+        public DbSet<Ledger> LedgerRecords { get; set; }
     }
 }

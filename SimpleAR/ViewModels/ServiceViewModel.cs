@@ -32,20 +32,6 @@ namespace SimpleAR.ViewModels
 
         private IServiceController Controller { get; set; }
 
-        public List<Service> Services
-        {
-            get
-            {
-                if (Controller == null) return null;
-                return Controller.Services;
-            }
-            set
-            {
-                Controller.Services = value;
-                OnPropertyChanged("Services");
-            }
-        }
-
         public string NewServiceName 
         {
             get

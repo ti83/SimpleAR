@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SimpleAR.Common;
 using SimpleAR.Interfaces;
 using SimpleAR_DAL.DBModels;
 using SimpleAR_DAL.Managers;
@@ -16,8 +17,6 @@ namespace SimpleAR.Controllers
             LoadServicesFromDB();
         }
 
-        public List<Service> Services { get; set; }
-
         public string NewServiceName { get; set; }
 
         public decimal? NewPricePerUnit { get; set; }
@@ -26,13 +25,14 @@ namespace SimpleAR.Controllers
 
         public void AddNewService()
         {
-            ServiceManager.SaveService(new Service()
+            var service = new Service()
             {
                 ServiceName = NewServiceName,
                 PricePerUnit = NewPricePerUnit ?? 0,
                 UnitType = NewUnitType
-            });
-            LoadServicesFromDB();
+            };
+            ServiceManager.SaveService(service);
+            GlobalLists.Services.Add(service);
             NewServiceName = string.Empty;
             NewPricePerUnit = null;
             NewUnitType = string.Empty;
@@ -42,12 +42,12 @@ namespace SimpleAR.Controllers
         {
             if (!service.Id.HasValue)
             {
-                Services.Remove(service);
+                GlobalLists.Services.Remove(service);
             }
             else
             {
                 ServiceManager.DeleteService(service.Id.Value);
-                LoadServicesFromDB();
+                GlobalLists.Services.Remove(service);
             }
         }
 
@@ -59,7 +59,12 @@ namespace SimpleAR.Controllers
 
         private void LoadServicesFromDB()
         {
-            Services = ServiceManager.GetServices();
+            GlobalLists.Services.Clear();
+            var dbServices = ServiceManager.GetServices();
+            foreach (var service in dbServices)
+            {
+                GlobalLists.Services.Add(service);
+            }
         }
     }
 }

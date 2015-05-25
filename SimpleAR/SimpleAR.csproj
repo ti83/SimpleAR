@@ -76,6 +76,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\DelegateCommand.cs" />
+    <Compile Include="Common\GlobalLists.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\LedgerController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />

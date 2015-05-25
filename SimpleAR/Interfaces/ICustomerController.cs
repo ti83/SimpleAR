@@ -11,7 +11,6 @@ namespace SimpleAR.Interfaces
     public interface ICustomerController
     {
 
-        List<Customer> Customers { get; set; }
         string NewCustomerName { get; set; }
 
         void AddNewCustomer();

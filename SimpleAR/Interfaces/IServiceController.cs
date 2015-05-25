@@ -9,7 +9,6 @@ namespace SimpleAR.Interfaces
 {
     public interface IServiceController
     {
-        List<Service> Services { get; set; }
         string NewServiceName { get; set; }
         decimal? NewPricePerUnit { get; set; }
         string NewUnitType { get; set; }

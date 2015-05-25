@@ -13,16 +13,16 @@
     </Window.DataContext>
 
     <TabControl  FontSize="20">
-        <TabItem Header="&#xf03a; Ledger" FontFamily="{StaticResource FontAwesome}">
-            <Views:LedgerView FontSize="12"/>
+        <TabItem Header="&#xf03a; Ledger" Padding="20,5" FontFamily="{StaticResource FontAwesome}">
+            <Views:LedgerView DataContext="{Binding LedgerTab}"  FontSize="12"/>
         </TabItem>
-        <TabItem Header="&#xf1ec; Statements"  FontFamily="{StaticResource FontAwesome}">
+        <TabItem Header="&#xf1ec; Statements" Padding="20,5" FontFamily="{StaticResource FontAwesome}">
             
         </TabItem>
-        <TabItem Header="&#xf0ad; Services" FontFamily="{StaticResource FontAwesome}">
+        <TabItem Header="&#xf0ad; Services" Padding="20,5" FontFamily="{StaticResource FontAwesome}">
             <Views:ServiceView DataContext="{Binding ServiceTab}"  FontSize="12"/>
         </TabItem>
-        <TabItem Header="&#xf1ad; Customers" FontFamily="{StaticResource FontAwesome}">
+        <TabItem Header="&#xf1ad; Customers" Padding="20,5" FontFamily="{StaticResource FontAwesome}">
             <Views:CustomerView DataContext="{Binding CustomersTab}"  FontSize="12"/>
         </TabItem>
 

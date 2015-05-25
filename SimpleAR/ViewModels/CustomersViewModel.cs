@@ -48,20 +48,6 @@ namespace SimpleAR.ViewModels
         /// </summary>
         private ICustomerController Controller { get; set; }
 
-        public List<Customer> Customers
-        {
-            get
-            {
-                if (Controller == null) return null;
-                return Controller.Customers;
-            }
-            set
-            {
-                Controller.Customers = value;
-                OnPropertyChanged("Customers");
-            }
-        }
-
         public string NewCustomerName
         {
             get

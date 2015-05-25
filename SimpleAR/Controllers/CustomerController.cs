@@ -12,7 +12,6 @@ namespace SimpleAR.Controllers
 {
     public class CustomerController :  ICustomerController
     {
-        public List<Customer> Customers { get; set; }
         public string NewCustomerName { get; set; }
 
 
@@ -23,8 +22,9 @@ namespace SimpleAR.Controllers
 
         public void AddNewCustomer()
         {
-            CustomerManager.SaveCustomer(new Customer() { Name = NewCustomerName });
-            LoadCustomersFromDB();
+            var customer = new Customer() {Name = NewCustomerName};
+            CustomerManager.SaveCustomer(customer);
+            GlobalLists.Customers.Add(customer);
             NewCustomerName = string.Empty;
 
         }
@@ -33,12 +33,12 @@ namespace SimpleAR.Controllers
         {
             if (!customer.Id.HasValue)
             {
-                Customers.Remove(customer);
+                GlobalLists.Customers.Remove(customer);
             }
             else
             {
+                GlobalLists.Customers.Remove(customer);
                 CustomerManager.DeleteCustomer(customer.Id.Value);
-                LoadCustomersFromDB();
             }
 
         }
@@ -51,7 +51,12 @@ namespace SimpleAR.Controllers
 
         private void LoadCustomersFromDB()
         {
-            Customers = CustomerManager.GetCustomers();        
+            GlobalLists.Customers.Clear();
+            var dbCustomers = CustomerManager.GetCustomers();
+            foreach (var customer in dbCustomers)
+            {
+                GlobalLists.Customers.Add(customer);
+            }
         }
 
     }
