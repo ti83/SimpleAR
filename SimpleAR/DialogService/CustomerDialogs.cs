@@ -1,11 +1,12 @@
 ﻿using SimpleAR.Factories;
+using SimpleAR.Interfaces;
 using SimpleAR_DAL.DBModels;
 
 namespace SimpleAR.DialogService
 {
-    public class CustomerDialogs
+    public class CustomerDialogs : ICustomerDialog
     {
-        public static bool EditCustomer(Customer customer)
+        public bool EditCustomer(Customer customer)
         {
             var viewModel = ViewModelFactory.CreateEditCustomerViewModel(customer);
             var view = ViewFactory.CreatEditCustomerView(viewModel);

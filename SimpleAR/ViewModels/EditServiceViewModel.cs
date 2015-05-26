@@ -38,8 +38,6 @@ namespace SimpleAR.ViewModels
             }
         }
 
-
-
         #endregion
 
     }

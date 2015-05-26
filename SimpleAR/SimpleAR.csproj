@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Images\Fatcow-Farm-Fresh-Account-balances.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -84,11 +87,15 @@
     <Compile Include="DialogService\LedgerDialogs.cs" />
     <Compile Include="DialogService\ServiceDialogs.cs" />
     <Compile Include="Factories\ControllerFactory.cs" />
+    <Compile Include="Factories\DialogFactory.cs" />
     <Compile Include="Factories\ViewFactory.cs" />
     <Compile Include="Factories\ViewModelFactory.cs" />
     <Compile Include="Interfaces\ICustomerController.cs" />
+    <Compile Include="Interfaces\ICustomerDialog.cs" />
     <Compile Include="Interfaces\ILedgerController.cs" />
+    <Compile Include="Interfaces\ILedgerDialog.cs" />
     <Compile Include="Interfaces\IServiceController.cs" />
+    <Compile Include="Interfaces\IServiceDialog.cs" />
     <Compile Include="ViewModels\CustomersViewModel.cs" />
     <Compile Include="ViewModels\EditCustomerViewModel.cs" />
     <Compile Include="ViewModels\EditLedgerRecordViewModel.cs" />

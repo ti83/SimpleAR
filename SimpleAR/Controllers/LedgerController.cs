@@ -101,7 +101,8 @@ namespace SimpleAR.Controllers
 
         public void SaveLedgerRecord(Ledger ledger)
         {
-            
+            LedgerManager.SaveLedgerItem(ledger);
+            LoadLedgerFromDB();
         }
     }
 }

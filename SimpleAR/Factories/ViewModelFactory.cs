@@ -1,4 +1,6 @@
-﻿using SimpleAR.Interfaces;
+﻿using System.Linq;
+using SimpleAR.Common;
+using SimpleAR.Interfaces;
 using SimpleAR.ViewModels;
 using SimpleAR_DAL.DBModels;
 
@@ -8,7 +10,8 @@ namespace SimpleAR.Factories
     {
         internal static CustomersViewModel CreateCustomerViewModel(ICustomerController controller)
         {
-            return new CustomersViewModel(controller);
+            var dialogService = DialogFactory.CreateCustomerDialog();
+            return new CustomersViewModel(controller, dialogService);
         }
 
         internal static EditCustomerViewModel CreateEditCustomerViewModel(Customer customer)
@@ -21,7 +24,8 @@ namespace SimpleAR.Factories
 
         internal static ServiceViewModel CreateServiceViewModel(IServiceController controller)
         {
-            return new ServiceViewModel(controller);
+            var dialogService = DialogFactory.CreateServiceDialog();
+            return new ServiceViewModel(controller, dialogService);
         }
 
         internal static EditServiceViewModel CreatedEditServiceViewModel(Service service)
@@ -36,12 +40,23 @@ namespace SimpleAR.Factories
 
         internal static LedgerViewModel CreateLedgerViewModel(ILedgerController controller)
         {
-            return new LedgerViewModel(controller);
+            var dialogService = DialogFactory.CreateLedgerDialog();
+            return new LedgerViewModel(controller, dialogService);
         }
 
         internal static EditLedgerRecordViewModel CreateEditLedgerRecordViewModel(Ledger ledger)
         {
-            return new EditLedgerRecordViewModel(ledger);
+            var selectedCustomer = GlobalLists.Customers.FirstOrDefault(c => c.Id == ledger.CustomerId);
+            var selectedService = GlobalLists.Services.FirstOrDefault(s => s.Id == ledger.ServiceId);
+            return new EditLedgerRecordViewModel()
+            {
+                SelectedCustomer = selectedCustomer,
+                SelectedService = selectedService,
+                DOS = ledger.DOS,
+                PricePerUnit = ledger.PricePerUnit,
+                NumberOfUnits = ledger.NumberOfUnits,
+                UnitType = ledger.UnitType
+            };
         }
     }
 }

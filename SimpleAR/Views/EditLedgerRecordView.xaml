@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:viewModels="clr-namespace:SimpleAR.ViewModels"
         xmlns:common="clr-namespace:SimpleAR.Common"
-        Title="EditLedgerRecord" Height="285" Width="350">
+        Title="Edit Ledger Entry" Height="300" Width="360" ShowInTaskbar="False" ResizeMode="NoResize" Icon="/SimpleAR;component/Images/Fatcow-Farm-Fresh-Account-balances.ico" WindowStartupLocation="CenterOwner">
     <Window.DataContext>
         <viewModels:EditLedgerRecordViewModel/>
     </Window.DataContext>
@@ -29,16 +29,16 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Column="0" Grid.Row="0" Margin="5">Customer Name:</TextBlock>
-            <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{x:Static common:GlobalLists.Customers}" SelectedItem="{Binding NewSelectedCustomer}" DisplayMemberPath="Name" TextSearch.TextPath = "{Binding Name}" Height="30" Width="230" Margin="0,0,5,0" VerticalContentAlignment="Center" IsTextSearchEnabled="True" HorizontalAlignment="Left"/>
+            <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{x:Static common:GlobalLists.Customers}" SelectedItem="{Binding SelectedCustomer}" DisplayMemberPath="Name" TextSearch.TextPath = "{Binding Name}" Height="30" Width="230" Margin="5" VerticalContentAlignment="Center" IsTextSearchEnabled="True" HorizontalAlignment="Left"/>
 
             <TextBlock Grid.Column="0" Grid.Row="1" Margin="5">Service Name:</TextBlock>
-            <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{x:Static common:GlobalLists.Services}" SelectedItem="{Binding NewSelectedCustomer}" DisplayMemberPath="ServiceName" TextSearch.TextPath = "{Binding Name}" Height="30" Width="230" Margin="0,0,5,0" VerticalContentAlignment="Center" IsTextSearchEnabled="True" HorizontalAlignment="Left"/>
+            <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{x:Static common:GlobalLists.Services}" SelectedItem="{Binding SelectedService}" DisplayMemberPath="ServiceName" TextSearch.TextPath = "{Binding Name}" Height="30" Width="230" Margin="5" VerticalContentAlignment="Center" IsTextSearchEnabled="True" HorizontalAlignment="Left"/>
 
             <TextBlock Grid.Column="0" Grid.Row="2" Margin="5">Price Per Unit:</TextBlock>
             <TextBox Grid.Column="1" Grid.Row="2" Margin="5" Text="{Binding PricePerUnit}" Width="80" HorizontalAlignment="Left"/>
 
             <TextBlock Grid.Column="0" Grid.Row="3" Margin="5">DOS:</TextBlock>
-            <DatePicker Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Height="20" Width="127" Margin="5" Padding="0" SelectedDate="{Binding NewDOS,UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center">
+            <DatePicker Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Height="20" Width="127" Margin="5" Padding="0" SelectedDate="{Binding DOS,UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center">
             </DatePicker>
 
             <TextBlock Grid.Column="0" Grid.Row="4" Margin="5">Number Of Units:</TextBlock>

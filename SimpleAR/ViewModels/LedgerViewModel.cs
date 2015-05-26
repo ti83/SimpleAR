@@ -21,9 +21,10 @@ namespace SimpleAR.ViewModels
             // This is just a stub so that the wpf designer can initialize this control in the editor.            
         }
 
-        public LedgerViewModel(ILedgerController controller)
+        public LedgerViewModel(ILedgerController controller, ILedgerDialog dialogService)
         {
             Controller = controller;
+            DialogService = dialogService;
             AddNewServiceCommand = new DelegateCommand(HandleAddNewServiceCommand);
             DeleteServiceCommand = new DelegateCommand(HandleDeleteServiceCommand);
             EditServiceCommand = new DelegateCommand(HandleEditServiceCommand);
@@ -33,6 +34,7 @@ namespace SimpleAR.ViewModels
         #region Properties
 
         private ILedgerController Controller { get; set; }
+        private ILedgerDialog DialogService { get;set; }
 
         public List<Ledger> LedgerRecords
         {
@@ -222,7 +224,7 @@ namespace SimpleAR.ViewModels
                 return;
             }
 
-            if (LedgerDialogs.EditLedgerRecordItem(ledger))
+            if (DialogService.EditLedgerRecordItem(ledger))
             {
                 Controller.SaveLedgerRecord(ledger);
                 OnPropertyChanged("LedgerRecords");

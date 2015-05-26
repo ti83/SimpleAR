@@ -29,6 +29,7 @@ namespace SimpleAR_DAL.Managers
                 dbRecord.ServiceId = ledger.ServiceId;
                 dbRecord.DateOfService = ledger.DateOfService;
                 dbRecord.ServiceName = ledger.ServiceName;
+                dbRecord.CustomerName = ledger.CustomerName;
                 dbRecord.PricePerUnit = ledger.PricePerUnit;
                 dbRecord.NumberOfUnits = ledger.NumberOfUnits;
                 dbRecord.UnitType = ledger.UnitType;

@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SimpleAR.Factories;
+using SimpleAR.Interfaces;
 using SimpleAR_DAL.DBModels;
 
 namespace SimpleAR.DialogService
 {
-    public class ServiceDialogs
+    public class ServiceDialogs : IServiceDialog
     {
-        public static bool EditService(Service service)
+        public bool EditService(Service service)
         {
             var viewModel = ViewModelFactory.CreatedEditServiceViewModel(service);
             var view = ViewFactory.CreateEditServiceView(viewModel);

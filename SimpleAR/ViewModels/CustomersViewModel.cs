@@ -29,11 +29,13 @@ namespace SimpleAR.ViewModels
         /// Initializes a new instance of the <see cref="CustomersViewModel"/> class.
         /// </summary>
         /// <param name="controller">
-        /// The controller.
+        ///     The controller.
         /// </param>
-        public CustomersViewModel(ICustomerController controller)
+        /// <param name="dialogService"></param>
+        public CustomersViewModel(ICustomerController controller, ICustomerDialog dialogService)
         {
-            this.Controller = controller;
+            Controller = controller;
+            DialogService = dialogService;
             AddNewCustomerCommand = new DelegateCommand(HandleAddNewCustomerCommand);
             DeleteCustomerCommand = new DelegateCommand(HandleDeleteCustomerCommand);
             EditCustomerCommand = new DelegateCommand(HandleEditCustomerCommand);
@@ -47,6 +49,8 @@ namespace SimpleAR.ViewModels
         /// Gets or sets the controller.
         /// </summary>
         private ICustomerController Controller { get; set; }
+
+        private ICustomerDialog DialogService { get; set; }
 
         public string NewCustomerName
         {
@@ -106,7 +110,7 @@ namespace SimpleAR.ViewModels
                 return;
             }
 
-            if (CustomerDialogs.EditCustomer(customer))
+            if (DialogService.EditCustomer(customer))
             {
                 Controller.SaveCustomer(customer);
             }

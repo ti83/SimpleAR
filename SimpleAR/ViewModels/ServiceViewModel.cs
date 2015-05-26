@@ -20,9 +20,10 @@ namespace SimpleAR.ViewModels
             // This is just a stub so that the wpf designer can initialize this control in the editor.
         }
 
-        public ServiceViewModel(IServiceController controller)
+        public ServiceViewModel(IServiceController controller, IServiceDialog dialogService)
         {
             Controller = controller;
+            DialogService = dialogService;
             AddNewServiceCommand = new DelegateCommand(HandleAddNewServiceCommand);
             DeleteServiceCommand = new DelegateCommand(HandleDeleteServiceCommand);
             EditServiceCommand = new DelegateCommand(HandleEditServiceCommand);
@@ -31,6 +32,7 @@ namespace SimpleAR.ViewModels
         #region Properties
 
         private IServiceController Controller { get; set; }
+        private IServiceDialog DialogService { get; set; }
 
         public string NewServiceName 
         {
@@ -135,7 +137,7 @@ namespace SimpleAR.ViewModels
                 return;
             }
 
-            if (ServiceDialogs.EditService(service))
+            if (DialogService.EditService(service))
             {
                 Controller.SaveService(service);
                 OnPropertyChanged("Services");
