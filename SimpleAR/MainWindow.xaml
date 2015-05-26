@@ -17,7 +17,7 @@
             <Views:LedgerView DataContext="{Binding LedgerTab}"  FontSize="12"/>
         </TabItem>
         <TabItem Header="&#xf1ec; Statements" Padding="20,5" FontFamily="{StaticResource FontAwesome}">
-            
+            <Views:StatementView DataContext="{Binding StatementTab}"  FontSize="12"/>
         </TabItem>
         <TabItem Header="&#xf0ad; Services" Padding="20,5" FontFamily="{StaticResource FontAwesome}">
             <Views:ServiceView DataContext="{Binding ServiceTab}"  FontSize="12"/>

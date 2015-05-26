@@ -1,4 +1,15 @@
-﻿using SimpleAR.Controllers;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ControllerFactory.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The controller factory.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+
+using SimpleAR.Controllers;
 using SimpleAR.Interfaces;
 
 namespace SimpleAR.Factories

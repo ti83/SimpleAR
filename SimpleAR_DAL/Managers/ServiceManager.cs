@@ -1,13 +1,35 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ServiceManager.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The service manager.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using SimpleAR_DAL.DBModels;
 using SimpleAR_DAL.Factories;
-using System.Linq;
 
 namespace SimpleAR_DAL.Managers
 {
+    /// <summary>
+    /// The service manager.
+    /// </summary>
     public class ServiceManager
     {
+        /// <summary>
+        /// The save service.
+        /// </summary>
+        /// <param name="service">
+        /// The service.
+        /// </param>
+        /// <exception cref="Exception">
+        /// </exception>
         public static void SaveService(Service service)
         {
             var context = ManagerFactories.CreateContextManager();
@@ -20,21 +42,35 @@ namespace SimpleAR_DAL.Managers
                 var dbRecord = context.Services.Single(c => c.Id == service.Id);
                 if (dbRecord == null)
                 {
-                    throw new Exception(String.Format("Couldn't find a service with the id of {0}", service.Id));
+                    throw new Exception(string.Format("Couldn't find a service with the id of {0}", service.Id));
                 }
+
                 dbRecord.ServiceName = service.ServiceName;
                 dbRecord.PricePerUnit = service.PricePerUnit;
                 dbRecord.UnitType = service.UnitType;
             }
+
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// The get services.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="List"/>.
+        /// </returns>
         public static List<Service> GetServices()
         {
             var context = ManagerFactories.CreateContextManager();
             return context.Services.ToList();
         }
 
+        /// <summary>
+        /// The delete service.
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
         public static void DeleteService(int id)
         {
             var context = ManagerFactories.CreateContextManager();

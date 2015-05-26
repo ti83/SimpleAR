@@ -64,6 +64,7 @@
     <Compile Include="Managers\CustomerManager.cs" />
     <Compile Include="Managers\LedgerManager.cs" />
     <Compile Include="Managers\ServiceManager.cs" />
+    <Compile Include="Managers\StatementManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

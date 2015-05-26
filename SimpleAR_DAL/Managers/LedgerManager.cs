@@ -1,16 +1,35 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="LedgerManager.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The ledger manager.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+
+using System;
 using System.Collections.Generic;
-using System.Data.Entity.Core.Common.CommandTrees;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SimpleAR_DAL.DBModels;
 using SimpleAR_DAL.Factories;
 
 namespace SimpleAR_DAL.Managers
 {
+    /// <summary>
+    /// The ledger manager.
+    /// </summary>
     public class LedgerManager
     {
+        /// <summary>
+        /// The save ledger item.
+        /// </summary>
+        /// <param name="ledger">
+        /// The ledger.
+        /// </param>
+        /// <exception cref="Exception">
+        /// </exception>
         public static void SaveLedgerItem(Ledger ledger)
         {
             var context = ManagerFactories.CreateContextManager();
@@ -23,8 +42,9 @@ namespace SimpleAR_DAL.Managers
                 var dbRecord = context.LedgerRecords.Single(c => c.Id == ledger.Id);
                 if (dbRecord == null)
                 {
-                    throw new Exception(String.Format("Couldn't find a ledger with the id of {0}", ledger.Id));
+                    throw new Exception(string.Format("Couldn't find a ledger with the id of {0}", ledger.Id));
                 }
+
                 dbRecord.CustomerId = ledger.CustomerId;
                 dbRecord.ServiceId = ledger.ServiceId;
                 dbRecord.DateOfService = ledger.DateOfService;
@@ -34,9 +54,22 @@ namespace SimpleAR_DAL.Managers
                 dbRecord.NumberOfUnits = ledger.NumberOfUnits;
                 dbRecord.UnitType = ledger.UnitType;
             }
+
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// The get ledger entries.
+        /// </summary>
+        /// <param name="startDate">
+        /// The start date.
+        /// </param>
+        /// <param name="endDate">
+        /// The end date.
+        /// </param>
+        /// <returns>
+        /// The <see cref="List"/>.
+        /// </returns>
         public static List<Ledger> GetLedgerEntries(DateTime startDate, DateTime endDate)
         {
             var start = startDate.ToFileTime().ToString();
@@ -49,6 +82,12 @@ namespace SimpleAR_DAL.Managers
             return result.ToList();
         }
 
+        /// <summary>
+        /// The delete ledger item.
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
         public static void DeleteLedgerItem(int id)
         {
             var context = ManagerFactories.CreateContextManager();

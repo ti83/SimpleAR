@@ -1,26 +1,47 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="LedgerViewModel.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The ledger view model.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using SimpleAR.Common;
-using SimpleAR.DialogService;
 using SimpleAR.Interfaces;
 using SimpleAR_DAL.DBModels;
 
 namespace SimpleAR.ViewModels
 {
+    /// <summary>
+    /// The ledger view model.
+    /// </summary>
     public class LedgerViewModel : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LedgerViewModel"/> class.
+        /// </summary>
         public LedgerViewModel()
         {
             // This is just a stub so that the wpf designer can initialize this control in the editor.            
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LedgerViewModel"/> class.
+        /// </summary>
+        /// <param name="controller">
+        /// The controller.
+        /// </param>
+        /// <param name="dialogService">
+        /// The dialog service.
+        /// </param>
         public LedgerViewModel(ILedgerController controller, ILedgerDialog dialogService)
         {
             Controller = controller;
@@ -33,9 +54,19 @@ namespace SimpleAR.ViewModels
 
         #region Properties
 
+        /// <summary>
+        /// Gets or sets the controller.
+        /// </summary>
         private ILedgerController Controller { get; set; }
+
+        /// <summary>
+        /// Gets or sets the dialog service.
+        /// </summary>
         private ILedgerDialog DialogService { get;set; }
 
+        /// <summary>
+        /// Gets or sets the ledger records.
+        /// </summary>
         public List<Ledger> LedgerRecords
         {
             get
@@ -43,6 +74,7 @@ namespace SimpleAR.ViewModels
                 if (Controller == null) return null;
                 return Controller.LedgerRecords;
             }
+
             set
             {
                 Controller.LedgerRecords = value;
@@ -50,13 +82,17 @@ namespace SimpleAR.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets the new selected customer.
+        /// </summary>
         public Customer NewSelectedCustomer 
         {
             get
             {
                 if (Controller == null) return null;
                 return Controller.NewSelectedCustomer;
-            } 
+            }
+ 
             set
             {
                 Controller.NewSelectedCustomer = value;
@@ -64,6 +100,9 @@ namespace SimpleAR.ViewModels
             } 
         }
 
+        /// <summary>
+        /// Gets or sets the new selected service.
+        /// </summary>
         public Service NewSelectedService
         {
             get
@@ -71,6 +110,7 @@ namespace SimpleAR.ViewModels
                 if (Controller == null) return null;
                 return Controller.NewSelectedService;
             }
+
             set
             {
                 Controller.NewSelectedService = value;
@@ -79,6 +119,9 @@ namespace SimpleAR.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets the new price per unit.
+        /// </summary>
         public decimal? NewPricePerUnit
         {
             get
@@ -86,6 +129,7 @@ namespace SimpleAR.ViewModels
                 if (Controller == null) return null;
                 return Controller.NewPricePerUnit;
             }
+
             set
             {
                 Controller.NewPricePerUnit = value;
@@ -93,6 +137,9 @@ namespace SimpleAR.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets the new number of units.
+        /// </summary>
         public decimal? NewNumberOfUnits
         {
             get
@@ -100,6 +147,7 @@ namespace SimpleAR.ViewModels
                 if (Controller == null) return null;
                 return Controller.NewNumberOfUnits;
             }
+
             set
             {
                 Controller.NewNumberOfUnits = value;
@@ -107,6 +155,9 @@ namespace SimpleAR.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets the new dos.
+        /// </summary>
         public DateTime? NewDOS
         {
             get
@@ -114,6 +165,7 @@ namespace SimpleAR.ViewModels
                 if (Controller == null) return null;
                 return Controller.NewDOS;
             }
+
             set
             {
                 if (Controller == null) return;
@@ -122,6 +174,9 @@ namespace SimpleAR.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets the ledger start date.
+        /// </summary>
         public DateTime? LedgerStartDate
         {
             get
@@ -129,6 +184,7 @@ namespace SimpleAR.ViewModels
                 if (Controller == null) return null;
                 return Controller.LedgerStartDate;                
             }
+
             set
             {
                 if (Controller == null) return;
@@ -137,6 +193,9 @@ namespace SimpleAR.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets the ledger end date.
+        /// </summary>
         public DateTime? LedgerEndDate
         {
             get
@@ -144,6 +203,7 @@ namespace SimpleAR.ViewModels
                 if (Controller == null) return null;
                 return Controller.LedgerEndDate;
             }
+
             set
             {
                 if (Controller == null) return;
@@ -156,15 +216,36 @@ namespace SimpleAR.ViewModels
 
         #region ICommand Properties
 
+        /// <summary>
+        /// Gets or sets the add new service command.
+        /// </summary>
         public ICommand AddNewServiceCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the delete service command.
+        /// </summary>
         public ICommand DeleteServiceCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the edit service command.
+        /// </summary>
         public ICommand EditServiceCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the update filter command.
+        /// </summary>
         public ICommand UpdateFilterCommand { get; set; }
 
         #endregion
 
         #region ICommand Methods
 
+        /// <summary>
+        /// The handle add new service command.
+        /// </summary>
+        /// <param name="obj">
+        /// The obj.
+        /// </param>
         private void HandleAddNewServiceCommand(object obj)
         {
             if (NewSelectedCustomer == null)
@@ -172,26 +253,31 @@ namespace SimpleAR.ViewModels
                 MessageBox.Show("Please specify a customer.");
                 return;
             }
+
             if (NewSelectedService == null)
             {
                 MessageBox.Show("Please specify a Service.");
                 return;
             }
+
             if (NewPricePerUnit == null)
             {
                 MessageBox.Show("Please specify a price.");
                 return;
             }
+
             if (NewNumberOfUnits == null)
             {
-                MessageBox.Show(string.Format("Please specify the number of {0}.",NewSelectedService.UnitType));
+                MessageBox.Show(string.Format("Please specify the number of {0}.", NewSelectedService.UnitType));
                 return;
             }
+
             if (NewDOS == null)
             {
                 MessageBox.Show("Please specify a Date Of Service.");
                 return;
             }
+
             Controller.AddNewLedgerRecord();
             OnPropertyChanged("NewSelectedCustomer");
             OnPropertyChanged("NewSelectedService");
@@ -201,6 +287,12 @@ namespace SimpleAR.ViewModels
             OnPropertyChanged("LedgerRecords");
         }
 
+        /// <summary>
+        /// The handle delete service command.
+        /// </summary>
+        /// <param name="obj">
+        /// The obj.
+        /// </param>
         private void HandleDeleteServiceCommand(object obj)
         {
             var ledger = obj as Ledger;
@@ -216,6 +308,12 @@ namespace SimpleAR.ViewModels
             OnPropertyChanged("LedgerRecords");
         }
 
+        /// <summary>
+        /// The handle edit service command.
+        /// </summary>
+        /// <param name="obj">
+        /// The obj.
+        /// </param>
         private void HandleEditServiceCommand(object obj)
         {
             var ledger = obj as Ledger;
@@ -231,6 +329,12 @@ namespace SimpleAR.ViewModels
             }
         }
 
+        /// <summary>
+        /// The handle update filter command.
+        /// </summary>
+        /// <param name="obj">
+        /// The obj.
+        /// </param>
         private void HandleUpdateFilterCommand(object obj)
         {
             if (LedgerStartDate == null)
@@ -238,11 +342,13 @@ namespace SimpleAR.ViewModels
                 MessageBox.Show("Please specify start date for the ledger filter.");
                 return;
             }
+
             if (LedgerEndDate == null)
             {
                 MessageBox.Show("Please specify end date for the ledger filter.");
                 return;
             }
+
             Controller.UpdateFilter();
             OnPropertyChanged("LedgerRecords");
         }
@@ -252,11 +358,20 @@ namespace SimpleAR.ViewModels
 
         #region Implement INotifyPropertyChanged
 
+        /// <summary>
+        /// The on property changed.
+        /// </summary>
+        /// <param name="propertyName">
+        /// The property name.
+        /// </param>
         private void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        /// <summary>
+        /// The property changed.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
