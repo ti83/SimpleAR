@@ -57,9 +57,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBModels\Customer.cs" />
+    <Compile Include="DBModels\Ledger.cs" />
+    <Compile Include="DBModels\Service.cs" />
     <Compile Include="Factories\ManagerFactories.cs" />
     <Compile Include="Managers\ContextManager.cs" />
     <Compile Include="Managers\CustomerManager.cs" />
+    <Compile Include="Managers\LedgerManager.cs" />
+    <Compile Include="Managers\ServiceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

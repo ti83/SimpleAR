@@ -29,11 +29,13 @@ namespace SimpleAR.ViewModels
         /// Initializes a new instance of the <see cref="CustomersViewModel"/> class.
         /// </summary>
         /// <param name="controller">
-        /// The controller.
+        ///     The controller.
         /// </param>
-        public CustomersViewModel(ICustomerController controller)
+        /// <param name="dialogService"></param>
+        public CustomersViewModel(ICustomerController controller, ICustomerDialog dialogService)
         {
-            this.Controller = controller;
+            Controller = controller;
+            DialogService = dialogService;
             AddNewCustomerCommand = new DelegateCommand(HandleAddNewCustomerCommand);
             DeleteCustomerCommand = new DelegateCommand(HandleDeleteCustomerCommand);
             EditCustomerCommand = new DelegateCommand(HandleEditCustomerCommand);
@@ -48,19 +50,7 @@ namespace SimpleAR.ViewModels
         /// </summary>
         private ICustomerController Controller { get; set; }
 
-        public List<Customer> Customers
-        {
-            get
-            {
-                if (Controller == null) return null;
-                return Controller.Customers;
-            }
-            set
-            {
-                Controller.Customers = value;
-                OnPropertyChanged("Customers");
-            }
-        }
+        private ICustomerDialog DialogService { get; set; }
 
         public string NewCustomerName
         {
@@ -97,7 +87,6 @@ namespace SimpleAR.ViewModels
             }
             Controller.AddNewCustomer();
             OnPropertyChanged("NewCustomerName");
-            OnPropertyChanged("Customers");
         }
 
         private void HandleDeleteCustomerCommand(object obj)
@@ -111,7 +100,6 @@ namespace SimpleAR.ViewModels
                 Controller.DeleteCustomer(customer);
             }
 
-            OnPropertyChanged("Customers");
         }
 
         private void HandleEditCustomerCommand(object obj)
@@ -122,10 +110,9 @@ namespace SimpleAR.ViewModels
                 return;
             }
 
-            if (CustomerDialogs.EditCustomer(customer))
+            if (DialogService.EditCustomer(customer))
             {
                 Controller.SaveCustomer(customer);
-                OnPropertyChanged("Customers");
             }
         }
 

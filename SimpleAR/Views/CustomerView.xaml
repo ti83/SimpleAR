@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:viewModels="clr-namespace:SimpleAR.ViewModels"
+             xmlns:common="clr-namespace:SimpleAR.Common"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600">
     <UserControl.Resources>
@@ -28,7 +29,7 @@
             </TextBox>
             <Button Background="LightGreen" Height="30" VerticalAlignment="Stretch" Padding="30,5,30,5" HorizontalAlignment="Left" Command="{Binding AddNewCustomerCommand}" FontFamily="{StaticResource FontAwesome}" FontSize="16">Add Customer</Button>
         </StackPanel>
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding Customers}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="True" CanUserResizeRows="False" CanUserResizeColumns="True">
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{x:Static common:GlobalLists.Customers}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="True" CanUserResizeRows="False" CanUserResizeColumns="True">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>

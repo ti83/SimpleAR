@@ -11,9 +11,19 @@ namespace SimpleAR.Factories
 {
     public class ViewFactory
     {
-        public static EditCustomerView CreatEditCustomerView(EditCustomerViewModel viewModel)
+        internal static EditCustomerView CreatEditCustomerView(EditCustomerViewModel viewModel)
         {
             return new EditCustomerView() { DataContext = viewModel };
+        }
+
+        internal static EditServiceView CreateEditServiceView(EditServiceViewModel viewModel)
+        {
+            return new EditServiceView() { DataContext = viewModel };
+        }
+
+        internal static EditLedgerRecordView CreateEditLedgerRecordView(EditLedgerRecordViewModel viewModel)
+        {
+            return new EditLedgerRecordView() { DataContext = viewModel };
         }
     }
 }
