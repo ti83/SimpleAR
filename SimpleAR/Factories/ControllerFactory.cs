@@ -51,5 +51,16 @@ namespace SimpleAR.Factories
         {
             return new LedgerController();
         }
+
+        /// <summary>
+        /// The create statement controller.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="IStatementController"/>.
+        /// </returns>
+        internal static IStatementController CreateStatementController()
+        {
+            return new StatementController();
+        }
     }
 }

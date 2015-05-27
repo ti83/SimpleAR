@@ -31,6 +31,7 @@ namespace SimpleAR.ViewModels
                 return;
             }
 
+            IntializeStatements();
             InitializeServiceTab();
             InitializeCustomerTab();
             InitializeLedgerTab();
@@ -57,6 +58,11 @@ namespace SimpleAR.ViewModels
         }
 
         /// <summary>
+        /// Gets or sets the statement tab.
+        /// </summary>
+        public StatementViewModel StatementTab { get; set; }
+
+        /// <summary>
         /// Gets the customers tab view model.
         /// </summary>
         public CustomersViewModel CustomersTab { get; private set; }
@@ -70,6 +76,17 @@ namespace SimpleAR.ViewModels
         /// Gets the ledger tab.
         /// </summary>
         public LedgerViewModel LedgerTab { get; private set; }
+
+        /// <summary>
+        /// The intialize statements.
+        /// </summary>
+        /// <exception cref="NotImplementedException">
+        /// </exception>
+        private void IntializeStatements()
+        {
+            var controller = ControllerFactory.CreateStatementController();
+            StatementTab = ViewModelFactory.CreateStatementViewModel(controller);
+        }
 
         /// <summary>
         /// The initialize service tab.

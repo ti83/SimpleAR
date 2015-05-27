@@ -83,6 +83,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\LedgerController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
+    <Compile Include="Controllers\StatementController.cs" />
     <Compile Include="DialogService\CustomerDialogs.cs" />
     <Compile Include="DialogService\LedgerDialogs.cs" />
     <Compile Include="DialogService\ServiceDialogs.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Interfaces\ILedgerDialog.cs" />
     <Compile Include="Interfaces\IServiceController.cs" />
     <Compile Include="Interfaces\IServiceDialog.cs" />
+    <Compile Include="Interfaces\IStatementController.cs" />
     <Compile Include="ViewModels\CustomersViewModel.cs" />
     <Compile Include="ViewModels\EditCustomerViewModel.cs" />
     <Compile Include="ViewModels\EditLedgerRecordViewModel.cs" />
@@ -103,6 +105,8 @@
     <Compile Include="ViewModels\EditServiceViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\ServiceViewModel.cs" />
+    <Compile Include="ViewModels\CustomerStatementViewModel.cs" />
+    <Compile Include="ViewModels\StatementViewModel.cs" />
     <Compile Include="Views\CustomerView.xaml.cs">
       <DependentUpon>CustomerView.xaml</DependentUpon>
     </Compile>

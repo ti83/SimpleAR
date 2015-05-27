@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 
-
+using System.Collections.Generic;
 using System.Linq;
 using SimpleAR.Common;
 using SimpleAR.Interfaces;
@@ -124,6 +124,35 @@ namespace SimpleAR.Factories
                 PricePerUnit = ledger.PricePerUnit, 
                 NumberOfUnits = ledger.NumberOfUnits, 
                 UnitType = ledger.UnitType
+            };
+        }
+
+        /// <summary>
+        /// The create statement view model.
+        /// </summary>
+        /// <param name="controller">
+        /// The controller.
+        /// </param>
+        /// <returns>
+        /// The <see cref="StatementViewModel"/>.
+        /// </returns>
+        internal static StatementViewModel CreateStatementViewModel(IStatementController controller)
+        {
+            return new StatementViewModel(controller);
+        }
+
+        internal static List<CustomerStatementViewModel> CreateCustomerStatementViewModelList(List<Customer> customers)
+        {
+            return customers.Select(CreateCustomerStatementViewModel).ToList();
+        }
+
+        private static CustomerStatementViewModel CreateCustomerStatementViewModel(Customer customer)
+        {
+            return new CustomerStatementViewModel()
+            {
+                CustomerName = customer.Name,
+                StatementRecords = customer.LedgerItems,
+                StatementTotal = customer.LedgerItems.Sum(li => li.ServiceTotal)
             };
         }
     }
