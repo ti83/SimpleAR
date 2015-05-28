@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleAR", "SimpleAR.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleAR_DAL", "..\SimpleAR_DAL\SimpleAR_DAL.csproj", "{0DF34BBB-A575-40C1-8B87-2888C299B895}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleAR_Performance", "..\SimpleAR_Performance\SimpleAR_Performance.csproj", "{227FCB07-31B9-4801-9420-5A24C7D5CF90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0DF34BBB-A575-40C1-8B87-2888C299B895}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DF34BBB-A575-40C1-8B87-2888C299B895}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DF34BBB-A575-40C1-8B87-2888C299B895}.Release|Any CPU.Build.0 = Release|Any CPU
+		{227FCB07-31B9-4801-9420-5A24C7D5CF90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{227FCB07-31B9-4801-9420-5A24C7D5CF90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{227FCB07-31B9-4801-9420-5A24C7D5CF90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{227FCB07-31B9-4801-9420-5A24C7D5CF90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

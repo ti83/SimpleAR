@@ -109,9 +109,9 @@ namespace SimpleAR.ViewModels
 
             var customers = Controller.GetStatementsForDateRange();
             Statements = ViewModelFactory.CreateCustomerStatementViewModelList(customers);
+            OnPropertyChanged("Statements");
 
             CurrentCursor = Cursors.Arrow;
-            OnPropertyChanged("Statements");
         }
 
         #endregion
