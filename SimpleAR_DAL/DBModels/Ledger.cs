@@ -1,4 +1,15 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Ledger.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The ledger.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SimpleAR_DAL.DBModels
@@ -46,8 +57,10 @@ namespace SimpleAR_DAL.DBModels
                 {
                     return DateTime.FromFileTime(unixDate);
                 }
+
                 return null;
             }
+
             set
             {
                 if (value.HasValue)
@@ -61,6 +74,9 @@ namespace SimpleAR_DAL.DBModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets the customer name.
+        /// </summary>
         [Column("CustomerName")]
         public string CustomerName { get; set; }
 

@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="LedgerView.xaml.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Interaction logic for LedgerView.xaml
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SimpleAR.Views
 {
@@ -20,6 +18,9 @@ namespace SimpleAR.Views
     /// </summary>
     public partial class LedgerView : UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LedgerView"/> class.
+        /// </summary>
         public LedgerView()
         {
             InitializeComponent();

@@ -1,4 +1,15 @@
-﻿using SimpleAR.Controllers;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ControllerFactory.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The controller factory.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+
+using SimpleAR.Controllers;
 using SimpleAR.Interfaces;
 
 namespace SimpleAR.Factories
@@ -39,6 +50,17 @@ namespace SimpleAR.Factories
         internal static ILedgerController CreateLedgerController()
         {
             return new LedgerController();
+        }
+
+        /// <summary>
+        /// The create statement controller.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="IStatementController"/>.
+        /// </returns>
+        internal static IStatementController CreateStatementController()
+        {
+            return new StatementController();
         }
     }
 }

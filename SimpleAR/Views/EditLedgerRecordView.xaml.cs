@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="EditLedgerRecordView.xaml.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Interaction logic for EditLedgerRecord.xaml
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SimpleAR.Views
 {
@@ -19,6 +18,9 @@ namespace SimpleAR.Views
     /// </summary>
     public partial class EditLedgerRecordView : Window
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditLedgerRecordView"/> class.
+        /// </summary>
         public EditLedgerRecordView()
         {
             InitializeComponent();

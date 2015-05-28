@@ -1,16 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="LedgerDialogs.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The ledger dialogs.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+
 using SimpleAR.Factories;
 using SimpleAR.Interfaces;
 using SimpleAR_DAL.DBModels;
 
 namespace SimpleAR.DialogService
 {
+    /// <summary>
+    /// The ledger dialogs.
+    /// </summary>
     public class LedgerDialogs : ILedgerDialog
     {
+        /// <summary>
+        /// The edit ledger record item.
+        /// </summary>
+        /// <param name="ledger">
+        /// The ledger.
+        /// </param>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool EditLedgerRecordItem(Ledger ledger)
         {
             var viewModel = ViewModelFactory.CreateEditLedgerRecordViewModel(ledger);

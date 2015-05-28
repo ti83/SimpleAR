@@ -1,12 +1,20 @@
-﻿using System.Collections.Generic;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CustomersViewModel.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The customers view model.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 using SimpleAR.Common;
-using SimpleAR.DialogService;
 using SimpleAR.Interfaces;
 using SimpleAR_DAL.DBModels;
-using SimpleAR_DAL.Managers;
 
 namespace SimpleAR.ViewModels
 {
@@ -29,9 +37,10 @@ namespace SimpleAR.ViewModels
         /// Initializes a new instance of the <see cref="CustomersViewModel"/> class.
         /// </summary>
         /// <param name="controller">
-        ///     The controller.
+        /// The controller.
         /// </param>
-        /// <param name="dialogService"></param>
+        /// <param name="dialogService">
+        /// </param>
         public CustomersViewModel(ICustomerController controller, ICustomerDialog dialogService)
         {
             Controller = controller;
@@ -50,8 +59,14 @@ namespace SimpleAR.ViewModels
         /// </summary>
         private ICustomerController Controller { get; set; }
 
+        /// <summary>
+        /// Gets or sets the dialog service.
+        /// </summary>
         private ICustomerDialog DialogService { get; set; }
 
+        /// <summary>
+        /// Gets or sets the new customer name.
+        /// </summary>
         public string NewCustomerName
         {
             get
@@ -59,6 +74,7 @@ namespace SimpleAR.ViewModels
                 if (Controller == null) return null;
                 return Controller.NewCustomerName;
             }
+
             set
             {
                 Controller.NewCustomerName = value;
@@ -70,14 +86,31 @@ namespace SimpleAR.ViewModels
 
         #region ICommand Properties
 
+        /// <summary>
+        /// Gets or sets the add new customer command.
+        /// </summary>
         public ICommand AddNewCustomerCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the delete customer command.
+        /// </summary>
         public ICommand DeleteCustomerCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the edit customer command.
+        /// </summary>
         public ICommand EditCustomerCommand { get; set; }
 
         #endregion
 
         #region ICommand Methods
 
+        /// <summary>
+        /// The handle add new customer command.
+        /// </summary>
+        /// <param name="obj">
+        /// The obj.
+        /// </param>
         private void HandleAddNewCustomerCommand(object obj)
         {
             if (string.IsNullOrWhiteSpace(NewCustomerName))
@@ -85,10 +118,17 @@ namespace SimpleAR.ViewModels
                 MessageBox.Show("Please specify a customer name.");
                 return;
             }
+
             Controller.AddNewCustomer();
             OnPropertyChanged("NewCustomerName");
         }
 
+        /// <summary>
+        /// The handle delete customer command.
+        /// </summary>
+        /// <param name="obj">
+        /// The obj.
+        /// </param>
         private void HandleDeleteCustomerCommand(object obj)
         {
             var customer = obj as Customer;
@@ -102,6 +142,12 @@ namespace SimpleAR.ViewModels
 
         }
 
+        /// <summary>
+        /// The handle edit customer command.
+        /// </summary>
+        /// <param name="obj">
+        /// The obj.
+        /// </param>
         private void HandleEditCustomerCommand(object obj)
         {
             var customer = obj as Customer;
@@ -120,11 +166,20 @@ namespace SimpleAR.ViewModels
 
         #region Implement INotifyPropertyChanged
 
+        /// <summary>
+        /// The on property changed.
+        /// </summary>
+        /// <param name="propertyName">
+        /// The property name.
+        /// </param>
         private void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        /// <summary>
+        /// The property changed.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion

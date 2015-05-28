@@ -1,7 +1,18 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MainWindowViewModel.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The main window view model.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+
+using System;
 using System.Configuration;
-using System.Runtime.CompilerServices;
 using SimpleAR.Factories;
+using SimpleAR_DAL.Managers;
 
 namespace SimpleAR.ViewModels
 {
@@ -20,11 +31,18 @@ namespace SimpleAR.ViewModels
                 return;
             }
 
+            IntializeStatements();
             InitializeServiceTab();
             InitializeCustomerTab();
             InitializeLedgerTab();
         }
 
+        /// <summary>
+        /// The check if visual studio running.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         private bool CheckIfVisualStudioRunning()
         {
             try
@@ -35,8 +53,14 @@ namespace SimpleAR.ViewModels
             {
                 return true;
             }
+
             return false;
         }
+
+        /// <summary>
+        /// Gets or sets the statement tab.
+        /// </summary>
+        public StatementViewModel StatementTab { get; set; }
 
         /// <summary>
         /// Gets the customers tab view model.
@@ -52,6 +76,17 @@ namespace SimpleAR.ViewModels
         /// Gets the ledger tab.
         /// </summary>
         public LedgerViewModel LedgerTab { get; private set; }
+
+        /// <summary>
+        /// The intialize statements.
+        /// </summary>
+        /// <exception cref="NotImplementedException">
+        /// </exception>
+        private void IntializeStatements()
+        {
+            var controller = ControllerFactory.CreateStatementController();
+            StatementTab = ViewModelFactory.CreateStatementViewModel(controller);
+        }
 
         /// <summary>
         /// The initialize service tab.
