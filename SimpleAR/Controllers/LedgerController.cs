@@ -136,15 +136,8 @@ namespace SimpleAR.Controllers
         /// </param>
         public void DeleteLedger(Ledger ledger)
         {
-            if (!ledger.Id.HasValue)
-            {
-                LedgerRecords.Remove(ledger);
-            }
-            else
-            {
-                LedgerRecords.Remove(ledger);
-                LedgerManager.DeleteLedgerItem(ledger.Id.Value);
-            }
+            LedgerManager.DeleteLedgerItem(ledger.Id.Value);
+            LoadLedgerFromDB();
         }
 
         /// <summary>
