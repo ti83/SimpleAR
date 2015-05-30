@@ -32,25 +32,27 @@ namespace SimpleAR_DAL.Managers
         /// </exception>
         public static void SaveService(Service service)
         {
-            var context = ManagerFactories.CreateContextManager();
-            if (service.Id == null)
+            using (var context = ManagerFactories.CreateContextManager())
             {
-                context.Services.Add(service);
-            }
-            else
-            {
-                var dbRecord = context.Services.Single(c => c.Id == service.Id);
-                if (dbRecord == null)
+                 if (service.Id == null)
                 {
-                    throw new Exception(string.Format("Couldn't find a service with the id of {0}", service.Id));
+                    context.Services.Add(service);
+                }
+                else
+                {
+                    var dbRecord = context.Services.Single(c => c.Id == service.Id);
+                    if (dbRecord == null)
+                    {
+                        throw new Exception(string.Format("Couldn't find a service with the id of {0}", service.Id));
+                    }
+
+                    dbRecord.ServiceName = service.ServiceName;
+                    dbRecord.PricePerUnit = service.PricePerUnit;
+                    dbRecord.UnitType = service.UnitType;
                 }
 
-                dbRecord.ServiceName = service.ServiceName;
-                dbRecord.PricePerUnit = service.PricePerUnit;
-                dbRecord.UnitType = service.UnitType;
+                context.SaveChanges();               
             }
-
-            context.SaveChanges();
         }
 
         /// <summary>
@@ -61,8 +63,10 @@ namespace SimpleAR_DAL.Managers
         /// </returns>
         public static List<Service> GetServices()
         {
-            var context = ManagerFactories.CreateContextManager();
-            return context.Services.ToList();
+            using (var context = ManagerFactories.CreateContextManager())
+            {
+                return context.Services.ToList();
+            }
         }
 
         /// <summary>
@@ -73,12 +77,14 @@ namespace SimpleAR_DAL.Managers
         /// </param>
         public static void DeleteService(int id)
         {
-            var context = ManagerFactories.CreateContextManager();
-            var service = context.Services.FirstOrDefault(c => c.Id == id);
-            if (service != null)
+            using (var context = ManagerFactories.CreateContextManager())
             {
-                context.Services.Remove(service);
-                context.SaveChanges();
+                var service = context.Services.FirstOrDefault(c => c.Id == id);
+                if (service != null)
+                {
+                    context.Services.Remove(service);
+                    context.SaveChanges();
+                }                
             }
         }
     }
