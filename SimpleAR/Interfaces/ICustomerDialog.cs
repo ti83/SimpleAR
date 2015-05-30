@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 
-
+using System.Windows;
 using SimpleAR_DAL.DBModels;
 
 namespace SimpleAR.Interfaces
@@ -28,5 +28,16 @@ namespace SimpleAR.Interfaces
         /// The <see cref="bool"/>.
         /// </returns>
         bool EditCustomer(Customer customer);
+
+        /// <summary>
+        /// The confirm customer delete.
+        /// </summary>
+        /// <param name="customerName">
+        /// The customer name.
+        /// </param>
+        /// <returns>
+        /// The <see cref="MessageBoxResult"/>.
+        /// </returns>
+        MessageBoxResult ConfirmCustomerDelete(string customerName);
     }
 }

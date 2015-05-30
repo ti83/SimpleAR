@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 
-
+using System.Windows;
 using SimpleAR_DAL.DBModels;
 
 namespace SimpleAR.Interfaces
@@ -28,5 +28,16 @@ namespace SimpleAR.Interfaces
         /// The <see cref="bool"/>.
         /// </returns>
         bool EditService(Service service);
+
+        /// <summary>
+        /// The confirm service delete.
+        /// </summary>
+        /// <param name="serviceName">
+        /// The service name.
+        /// </param>
+        /// <returns>
+        /// The <see cref="MessageBoxResult"/>.
+        /// </returns>
+        MessageBoxResult ConfirmServiceDelete(string serviceName);
     }
 }

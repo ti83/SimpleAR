@@ -40,10 +40,11 @@ namespace SimpleAR.ViewModels
         /// <param name="dialogService">
         /// The dialog service.
         /// </param>
-        public ServiceViewModel(IServiceController controller, IServiceDialog dialogService)
+        public ServiceViewModel(IServiceController controller, IServiceDialog dialogService, IMessageDialog messageDialog)
         {
             Controller = controller;
             DialogService = dialogService;
+            MyMessageBox = messageDialog;
             AddNewServiceCommand = new DelegateCommand(HandleAddNewServiceCommand);
             DeleteServiceCommand = new DelegateCommand(HandleDeleteServiceCommand);
             EditServiceCommand = new DelegateCommand(HandleEditServiceCommand);
@@ -60,6 +61,11 @@ namespace SimpleAR.ViewModels
         /// Gets or sets the dialog service.
         /// </summary>
         private IServiceDialog DialogService { get; set; }
+
+        /// <summary>
+        /// Gets or sets the message dialog.
+        /// </summary>
+        private IMessageDialog MyMessageBox { get; set; }
 
         /// <summary>
         /// Gets or sets the new service name.
@@ -151,19 +157,19 @@ namespace SimpleAR.ViewModels
         {
             if (string.IsNullOrWhiteSpace(NewServiceName))
             {
-                MessageBox.Show("Please specify a service name.");
+                MyMessageBox.ShowSimpleError("Please specify a service name.","Cannot Add Service");
                 return;
             }
 
             if (!NewPricePerUnit.HasValue)
             {
-                MessageBox.Show("Please specify a price per unit.");
+                MyMessageBox.ShowSimpleError("Please specify a price per unit.", "Cannot Add Service");
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(NewUnitType))
             {
-                MessageBox.Show("Please specify a unit type");
+                MyMessageBox.ShowSimpleError("Please specify a unit type", "Cannot Add Service");
                 return;
             }
 
@@ -185,7 +191,7 @@ namespace SimpleAR.ViewModels
             var service = obj as Service;
             if (service == null) return;
 
-            var result = MessageBox.Show(string.Format("Are you sure you want to delete {0}?", service.ServiceName), "Delete Service?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            var result = DialogService.ConfirmServiceDelete(service.ServiceName);
             if (result == MessageBoxResult.Yes)
             {
                 Controller.DeleteService(service);

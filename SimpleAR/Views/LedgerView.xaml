@@ -33,25 +33,25 @@
             <TextBlock Margin="5" FontSize="14" VerticalAlignment="Center">Price Per Unit:</TextBlock>
             <TextBox  Height="30" Width="50" Margin="5" VerticalContentAlignment="Center" Text="{Binding NewPricePerUnit, UpdateSourceTrigger=PropertyChanged}">
                 <TextBox.InputBindings>
-                    <KeyBinding Gesture="Enter" Command="{Binding AddNewServiceCommand}"/>
+                    <KeyBinding Gesture="Enter" Command="{Binding AddNewLedgerItemCommand}"/>
                 </TextBox.InputBindings>
             </TextBox>
 
             <TextBlock Margin="5" FontSize="14" VerticalAlignment="Center">Number of Units:</TextBlock>
             <TextBox  Height="30" Width="75" Margin="0,0,5,0" VerticalContentAlignment="Center" Text="{Binding NewNumberOfUnits, UpdateSourceTrigger=PropertyChanged}">
                 <TextBox.InputBindings>
-                    <KeyBinding Gesture="Enter" Command="{Binding AddNewServiceCommand}"/>
+                    <KeyBinding Gesture="Enter" Command="{Binding AddNewLedgerItemCommand}"/>
                 </TextBox.InputBindings>
             </TextBox>
 
             <TextBlock Margin="5" FontSize="14" VerticalAlignment="Center">Date of Service:</TextBlock>
             <DatePicker  Height="30" Width="127" Margin="5" Padding="0" SelectedDate="{Binding NewDOS,UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" >
                 <DatePicker.InputBindings>
-                    <KeyBinding Gesture="Enter" Command="{Binding AddNewServiceCommand}"/>
+                    <KeyBinding Gesture="Enter" Command="{Binding AddNewLedgerItemCommand}"/>
                 </DatePicker.InputBindings>
             </DatePicker>
 
-            <Button Background="LightGreen" Height="30" Margin="5,0,0,0" VerticalAlignment="Stretch" Padding="30,5,30,5" HorizontalAlignment="Left" Command="{Binding AddNewServiceCommand}" FontFamily="{StaticResource FontAwesome}" FontSize="16">Add</Button>
+            <Button Background="LightGreen" Height="30" Margin="5,0,0,0" VerticalAlignment="Stretch" Padding="30,5,30,5" HorizontalAlignment="Left" Command="{Binding AddNewLedgerItemCommand}" FontFamily="{StaticResource FontAwesome}" FontSize="16">Add</Button>
         </StackPanel>
         <GroupBox Grid.Row="2">
             <GroupBox.Header>
@@ -65,7 +65,7 @@
             </GroupBox.Header>
             <DataGrid AutoGenerateColumns="False" Margin="5" ItemsSource="{Binding LedgerRecords}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="True" CanUserResizeRows="False" CanUserResizeColumns="True">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn Width="40">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -130,7 +130,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn Width="40">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">

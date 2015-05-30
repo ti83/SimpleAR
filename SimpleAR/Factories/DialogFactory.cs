@@ -81,5 +81,25 @@ namespace SimpleAR.Factories
 
             return _serviceDialog;
         }
+
+        /// <summary>
+        /// The _message dialog.
+        /// </summary>
+        private static IMessageDialog _messageDialog;
+
+        /// <summary>
+        /// The create message dialog.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="IMessageDialog"/>.
+        /// </returns>
+        public static IMessageDialog CreateMessageDialog()
+        {
+            if (_messageDialog == null)
+            {
+                _messageDialog = new MessageDialog();
+            }
+            return _messageDialog;
+        }
     }
 }
