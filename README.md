@@ -15,7 +15,7 @@ When it comes time to tally your bills, use the statements tab:
 ![Alt text](https://github.com/ti83/SimpleAR/blob/develop/documentation/statements.png "Statements Tab")
 
 You can download the setup file here:
-http://www.rtochris.com/downloads/SimpleAR/setup.exe 
+http://www.rtochris.com/downloads/SimpleAR/setup.exe<br/>
 Last Updated: 2:30 PM CST 5/30/2015
 
 NOTE: Requires .Net 4.5.
