@@ -24,24 +24,26 @@ namespace SimpleAR_DAL.Managers
         {
             var start = startDate.ToFileTime().ToString();
             var end = endDate.ToFileTime().ToString();
-            var context = ManagerFactories.CreateContextManager();
+            using (var context = ManagerFactories.CreateContextManager())
+            {
+                var ledgerRecords = (from l in context.LedgerRecords
+                                     where string.Compare(l.DateOfService, start) >= 0 && string.Compare(l.DateOfService, end) <= 0
+                                     select l).ToList();
+                var customers = ConstructCustomerList(ledgerRecords);
+                PopulateLedgerRecords(customers, ledgerRecords);
 
-            var ledgerRecords = (from l in context.LedgerRecords
-                                 where string.Compare(l.DateOfService, start) >= 0 && string.Compare(l.DateOfService, end) <= 0
-                                 select l).ToList();
-            var customers = ConstructCustomerList(ledgerRecords);
-            PopulateLedgerRecords(customers, ledgerRecords);
-
-            return customers;
+                return customers;                
+            }
         }
 
         private static List<Customer> ConstructCustomerList(List<Ledger> ledgerRecords)
         {
             var uniqueCustomerIdList = (from lr in ledgerRecords select lr.CustomerId).Distinct().ToList();
-            var context = ManagerFactories.CreateContextManager();
-            var customers = context.Customers.Where(c => c.Id.HasValue && uniqueCustomerIdList.Contains(c.Id.Value));
-
-            return customers.ToList();
+            using (var context = ManagerFactories.CreateContextManager())
+            {
+                 var customers = context.Customers.Where(c => c.Id.HasValue && uniqueCustomerIdList.Contains(c.Id.Value));
+                return customers.ToList();               
+            }
         }
 
         private static void PopulateLedgerRecords(List<Customer> customers, List<Ledger> ledgerRecords)

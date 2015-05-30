@@ -32,23 +32,26 @@ namespace SimpleAR_DAL.Managers
         /// </exception>
         public static void SaveCustomer(Customer customer)
         {
-            var context = ManagerFactories.CreateContextManager();
-            if (customer.Id == null)
-            {
-                context.Customers.Add(customer);
-            }
-            else
-            {
-                var dbRecord = context.Customers.Single(c => c.Id == customer.Id);
-                if (dbRecord == null)
+            using (var context = ManagerFactories.CreateContextManager())
+            {                
+                if (customer.Id == null)
                 {
-                    throw new Exception(string.Format("Couldn't find a customer with the id of {0}", customer.Id));
+                    context.Customers.Add(customer);
+                }
+                else
+                {
+                    var dbRecord = context.Customers.Single(c => c.Id == customer.Id);
+                    if (dbRecord == null)
+                    {
+                        throw new Exception(string.Format("Couldn't find a customer with the id of {0}", customer.Id));
+                    }
+
+                    dbRecord.Name = customer.Name;
                 }
 
-                dbRecord.Name = customer.Name;
+                context.SaveChanges();
             }
-
-            context.SaveChanges();
+            
         }
 
         /// <summary>
@@ -59,8 +62,10 @@ namespace SimpleAR_DAL.Managers
         /// </returns>
         public static List<Customer> GetCustomers()
         {
-            var context = ManagerFactories.CreateContextManager();
-            return context.Customers.ToList();
+            using (var context = ManagerFactories.CreateContextManager())
+            {
+                return context.Customers.ToList();
+            }
         }
 
         /// <summary>
@@ -71,12 +76,14 @@ namespace SimpleAR_DAL.Managers
         /// </param>
         public static void DeleteCustomer(int id)
         {
-            var context = ManagerFactories.CreateContextManager();
-            var customer = context.Customers.FirstOrDefault(c => c.Id == id);
-            if (customer != null)
+            using (var context = ManagerFactories.CreateContextManager())
             {
-                context.Customers.Remove(customer);
-                context.SaveChanges();
+                var customer = context.Customers.FirstOrDefault(c => c.Id == id);
+                if (customer != null)
+                {
+                    context.Customers.Remove(customer);
+                    context.SaveChanges();
+                }
             }
         }
     }

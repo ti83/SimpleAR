@@ -32,30 +32,32 @@ namespace SimpleAR_DAL.Managers
         /// </exception>
         public static void SaveLedgerItem(Ledger ledger)
         {
-            var context = ManagerFactories.CreateContextManager();
-            if (ledger.Id == null)
+            using (var context = ManagerFactories.CreateContextManager())
             {
-                context.LedgerRecords.Add(ledger);
-            }
-            else
-            {
-                var dbRecord = context.LedgerRecords.Single(c => c.Id == ledger.Id);
-                if (dbRecord == null)
+                if (ledger.Id == null)
                 {
-                    throw new Exception(string.Format("Couldn't find a ledger with the id of {0}", ledger.Id));
+                    context.LedgerRecords.Add(ledger);
+                }
+                else
+                {
+                    var dbRecord = context.LedgerRecords.Single(c => c.Id == ledger.Id);
+                    if (dbRecord == null)
+                    {
+                        throw new Exception(string.Format("Couldn't find a ledger with the id of {0}", ledger.Id));
+                    }
+
+                    dbRecord.CustomerId = ledger.CustomerId;
+                    dbRecord.ServiceId = ledger.ServiceId;
+                    dbRecord.DateOfService = ledger.DateOfService;
+                    dbRecord.ServiceName = ledger.ServiceName;
+                    dbRecord.CustomerName = ledger.CustomerName;
+                    dbRecord.PricePerUnit = ledger.PricePerUnit;
+                    dbRecord.NumberOfUnits = ledger.NumberOfUnits;
+                    dbRecord.UnitType = ledger.UnitType;
                 }
 
-                dbRecord.CustomerId = ledger.CustomerId;
-                dbRecord.ServiceId = ledger.ServiceId;
-                dbRecord.DateOfService = ledger.DateOfService;
-                dbRecord.ServiceName = ledger.ServiceName;
-                dbRecord.CustomerName = ledger.CustomerName;
-                dbRecord.PricePerUnit = ledger.PricePerUnit;
-                dbRecord.NumberOfUnits = ledger.NumberOfUnits;
-                dbRecord.UnitType = ledger.UnitType;
+                context.SaveChanges();
             }
-
-            context.SaveChanges();
         }
 
         /// <summary>
@@ -74,12 +76,14 @@ namespace SimpleAR_DAL.Managers
         {
             var start = startDate.ToFileTime().ToString();
             var end = endDate.ToFileTime().ToString();
-            var context = ManagerFactories.CreateContextManager();
 
-            var result = from l in context.LedgerRecords
-                where string.Compare(l.DateOfService, start) >= 0 && string.Compare(l.DateOfService, end) <= 0
-                select l;
-            return result.ToList();
+            using (var context = ManagerFactories.CreateContextManager())
+            {
+                var result = from l in context.LedgerRecords
+                    where string.Compare(l.DateOfService, start) >= 0 && string.Compare(l.DateOfService, end) <= 0
+                    select l;
+                return result.ToList();
+            }
         }
 
         /// <summary>
@@ -90,12 +94,14 @@ namespace SimpleAR_DAL.Managers
         /// </param>
         public static void DeleteLedgerItem(int id)
         {
-            var context = ManagerFactories.CreateContextManager();
-            var ledger = context.LedgerRecords.FirstOrDefault(c => c.Id == id);
-            if (ledger != null)
+            using (var context = ManagerFactories.CreateContextManager())
             {
-                context.LedgerRecords.Remove(ledger);
-                context.SaveChanges();
+                var ledger = context.LedgerRecords.FirstOrDefault(c => c.Id == id);
+                if (ledger != null)
+                {
+                    context.LedgerRecords.Remove(ledger);
+                    context.SaveChanges();
+                }                
             }
         }
 
