@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 
-
+using System.Windows;
 using SimpleAR.Factories;
 using SimpleAR.Interfaces;
 using SimpleAR_DAL.DBModels;
@@ -42,6 +42,20 @@ namespace SimpleAR.DialogService
             customer.Name = viewModel.CustomerName;
 
             return true;
+        }
+
+        /// <summary>
+        /// The confirm customer delete.
+        /// </summary>
+        /// <param name="customerName">
+        /// The customer name.
+        /// </param>
+        /// <returns>
+        /// The <see cref="MessageBoxResult"/>.
+        /// </returns>
+        public MessageBoxResult ConfirmCustomerDelete(string customerName)
+        {
+            return MessageBox.Show(string.Format("Are you sure you want to delete {0}?  This will remove all records associated with them.", customerName), "Delete Customer?", MessageBoxButton.YesNo, MessageBoxImage.Question);
         }
     }
 }

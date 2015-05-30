@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 
-
+using System.Windows;
 using SimpleAR.Factories;
 using SimpleAR.Interfaces;
 using SimpleAR_DAL.DBModels;
@@ -44,6 +44,20 @@ namespace SimpleAR.DialogService
             service.UnitType = viewModel.UnitType;
 
             return true;
+        }
+
+        /// <summary>
+        /// The confirm service delete.
+        /// </summary>
+        /// <param name="serviceName">
+        /// The service name.
+        /// </param>
+        /// <returns>
+        /// The <see cref="MessageBoxResult"/>.
+        /// </returns>
+        public MessageBoxResult ConfirmServiceDelete(string serviceName)
+        {
+            return MessageBox.Show(string.Format("Are you sure you want to delete {0}?", serviceName), "Delete Service?", MessageBoxButton.YesNo, MessageBoxImage.Question);
         }
     }
 }

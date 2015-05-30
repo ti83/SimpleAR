@@ -42,11 +42,12 @@ namespace SimpleAR.ViewModels
         /// <param name="dialogService">
         /// The dialog service.
         /// </param>
-        public LedgerViewModel(ILedgerController controller, ILedgerDialog dialogService)
+        public LedgerViewModel(ILedgerController controller, ILedgerDialog dialogService,IMessageDialog messageDialog)
         {
             Controller = controller;
             DialogService = dialogService;
-            AddNewServiceCommand = new DelegateCommand(HandleAddNewServiceCommand);
+            MyMessageBox = messageDialog;
+            AddNewLedgerItemCommand = new DelegateCommand(HandleAddNewLedgerItemCommand);
             DeleteServiceCommand = new DelegateCommand(HandleDeleteServiceCommand);
             EditServiceCommand = new DelegateCommand(HandleEditServiceCommand);
             UpdateFilterCommand = new DelegateCommand(HandleUpdateFilterCommand);
@@ -63,6 +64,8 @@ namespace SimpleAR.ViewModels
         /// Gets or sets the dialog service.
         /// </summary>
         private ILedgerDialog DialogService { get;set; }
+
+         private IMessageDialog MyMessageBox { get; set; }
 
         /// <summary>
         /// Gets or sets the ledger records.
@@ -219,7 +222,7 @@ namespace SimpleAR.ViewModels
         /// <summary>
         /// Gets or sets the add new service command.
         /// </summary>
-        public ICommand AddNewServiceCommand { get; set; }
+        public ICommand AddNewLedgerItemCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the delete service command.
@@ -246,35 +249,35 @@ namespace SimpleAR.ViewModels
         /// <param name="obj">
         /// The obj.
         /// </param>
-        private void HandleAddNewServiceCommand(object obj)
+        private void HandleAddNewLedgerItemCommand(object obj)
         {
             if (NewSelectedCustomer == null)
             {
-                MessageBox.Show("Please specify a customer.");
+                MyMessageBox.ShowSimpleError("Please specify a customer.", "Cannot Add New Ledger Item");
                 return;
             }
 
             if (NewSelectedService == null)
             {
-                MessageBox.Show("Please specify a Service.");
+                MyMessageBox.ShowSimpleError("Please specify a Service.", "Cannot Add New Ledger Item");
                 return;
             }
 
             if (NewPricePerUnit == null)
             {
-                MessageBox.Show("Please specify a price.");
+                MyMessageBox.ShowSimpleError("Please specify a price.", "Cannot Add New Ledger Item");
                 return;
             }
 
             if (NewNumberOfUnits == null)
             {
-                MessageBox.Show(string.Format("Please specify the number of {0}.", NewSelectedService.UnitType));
+                MyMessageBox.ShowSimpleError(string.Format("Please specify the number of {0}.", NewSelectedService.UnitType), "Cannot Add New Ledger Item");
                 return;
             }
 
             if (NewDOS == null)
             {
-                MessageBox.Show("Please specify a Date Of Service.");
+                MyMessageBox.ShowSimpleError("Please specify a Date Of Service.", "Cannot Add New Ledger Item");
                 return;
             }
 
@@ -298,8 +301,7 @@ namespace SimpleAR.ViewModels
             var ledger = obj as Ledger;
             if (ledger == null) return;
 
-            var message = string.Format("Are you sure you want to delete {0} performed for {1} on {2}?", ledger.ServiceName, ledger.CustomerName, ledger.DOS.Value.ToShortDateString());
-            var result = MessageBox.Show(message, "Delete Ledger Entry?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            var result = DialogService.ConfirmServiceDelete(ledger);
             if (result == MessageBoxResult.Yes)
             {
                 Controller.DeleteLedger(ledger);
@@ -339,13 +341,13 @@ namespace SimpleAR.ViewModels
         {
             if (LedgerStartDate == null)
             {
-                MessageBox.Show("Please specify start date for the ledger filter.");
+                MyMessageBox.ShowSimpleError("Please specify start date for the ledger filter.", "Cannot Update Filter");
                 return;
             }
 
             if (LedgerEndDate == null)
             {
-                MessageBox.Show("Please specify end date for the ledger filter.");
+                MyMessageBox.ShowSimpleError("Please specify end date for the ledger filter.", "Cannot Update Filter");
                 return;
             }
 

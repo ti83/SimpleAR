@@ -34,7 +34,8 @@ namespace SimpleAR.Factories
         internal static CustomersViewModel CreateCustomerViewModel(ICustomerController controller)
         {
             var dialogService = DialogFactory.CreateCustomerDialog();
-            return new CustomersViewModel(controller, dialogService);
+            var messageDialog = DialogFactory.CreateMessageDialog();
+            return new CustomersViewModel(controller, dialogService, messageDialog);
         }
 
         /// <summary>
@@ -66,7 +67,8 @@ namespace SimpleAR.Factories
         internal static ServiceViewModel CreateServiceViewModel(IServiceController controller)
         {
             var dialogService = DialogFactory.CreateServiceDialog();
-            return new ServiceViewModel(controller, dialogService);
+            var messageDialog = DialogFactory.CreateMessageDialog();
+            return new ServiceViewModel(controller, dialogService, messageDialog);
         }
 
         /// <summary>
@@ -100,7 +102,8 @@ namespace SimpleAR.Factories
         internal static LedgerViewModel CreateLedgerViewModel(ILedgerController controller)
         {
             var dialogService = DialogFactory.CreateLedgerDialog();
-            return new LedgerViewModel(controller, dialogService);
+            var messageDialog = DialogFactory.CreateMessageDialog();
+            return new LedgerViewModel(controller, dialogService, messageDialog);
         }
 
         /// <summary>

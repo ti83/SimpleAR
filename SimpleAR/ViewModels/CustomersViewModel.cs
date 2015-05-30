@@ -37,14 +37,16 @@ namespace SimpleAR.ViewModels
         /// Initializes a new instance of the <see cref="CustomersViewModel"/> class.
         /// </summary>
         /// <param name="controller">
-        /// The controller.
+        ///     The controller.
         /// </param>
         /// <param name="dialogService">
         /// </param>
-        public CustomersViewModel(ICustomerController controller, ICustomerDialog dialogService)
+        /// <param name="messageDialog"></param>
+        public CustomersViewModel(ICustomerController controller, ICustomerDialog dialogService, IMessageDialog messageDialog)
         {
             Controller = controller;
             DialogService = dialogService;
+            MyMessageBox = messageDialog;
             AddNewCustomerCommand = new DelegateCommand(HandleAddNewCustomerCommand);
             DeleteCustomerCommand = new DelegateCommand(HandleDeleteCustomerCommand);
             EditCustomerCommand = new DelegateCommand(HandleEditCustomerCommand);
@@ -63,6 +65,8 @@ namespace SimpleAR.ViewModels
         /// Gets or sets the dialog service.
         /// </summary>
         private ICustomerDialog DialogService { get; set; }
+
+        private IMessageDialog MyMessageBox { get; set; }
 
         /// <summary>
         /// Gets or sets the new customer name.
@@ -115,7 +119,7 @@ namespace SimpleAR.ViewModels
         {
             if (string.IsNullOrWhiteSpace(NewCustomerName))
             {
-                MessageBox.Show("Please specify a customer name.");
+                MyMessageBox.ShowSimpleError("Please specify a customer name.", "Cannot Add New Customer");
                 return;
             }
 
@@ -134,7 +138,7 @@ namespace SimpleAR.ViewModels
             var customer = obj as Customer;
             if (customer == null) return;
 
-            var result = MessageBox.Show(string.Format("Are you sure you want to delete {0}?  This will remove all records associated with them.", customer.Name), "Delete Customer?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            var result = DialogService.ConfirmCustomerDelete(customer.Name);
             if (result == MessageBoxResult.Yes)
             {
                 Controller.DeleteCustomer(customer);

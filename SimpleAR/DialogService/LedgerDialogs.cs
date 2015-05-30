@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 
-
+using System.Windows;
 using SimpleAR.Factories;
 using SimpleAR.Interfaces;
 using SimpleAR_DAL.DBModels;
@@ -50,6 +50,13 @@ namespace SimpleAR.DialogService
             ledger.UnitType = viewModel.UnitType;
 
             return true;
+
+        }
+
+        public MessageBoxResult ConfirmServiceDelete(Ledger ledger)
+        {
+            var message = string.Format("Are you sure you want to delete {0} performed for {1} on {2}?", ledger.ServiceName, ledger.CustomerName, ledger.DOS.Value.ToShortDateString());
+            return MessageBox.Show(message, "Delete Ledger Entry?", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
         }
     }

@@ -86,6 +86,7 @@
     <Compile Include="Controllers\StatementController.cs" />
     <Compile Include="DialogService\CustomerDialogs.cs" />
     <Compile Include="DialogService\LedgerDialogs.cs" />
+    <Compile Include="DialogService\MessageDialog.cs" />
     <Compile Include="DialogService\ServiceDialogs.cs" />
     <Compile Include="Factories\ControllerFactory.cs" />
     <Compile Include="Factories\DialogFactory.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Interfaces\ICustomerDialog.cs" />
     <Compile Include="Interfaces\ILedgerController.cs" />
     <Compile Include="Interfaces\ILedgerDialog.cs" />
+    <Compile Include="Interfaces\IMessageDialog.cs" />
     <Compile Include="Interfaces\IServiceController.cs" />
     <Compile Include="Interfaces\IServiceDialog.cs" />
     <Compile Include="Interfaces\IStatementController.cs" />
