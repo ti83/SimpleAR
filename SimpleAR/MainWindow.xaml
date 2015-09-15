@@ -6,6 +6,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <FontFamily x:Key="FontAwesome">/SimpleAR;component/Fonts/#FontAwesome</FontFamily>
+            <FontFamily x:Key="FontAsimov">/SimpleAR;component/Fonts/#Asimov</FontFamily>
         </ResourceDictionary>
     </Window.Resources>
     <Window.DataContext>
@@ -13,16 +14,16 @@
     </Window.DataContext>
 
     <TabControl  FontSize="20">
-        <TabItem Header="&#xf03a; Ledger" Padding="20,5" FontFamily="{StaticResource FontAwesome}">
+        <TabItem Header="&#xf03a; Ledger" Padding="20,5" FontFamily="{StaticResource FontAsimov}">
             <Views:LedgerView DataContext="{Binding LedgerTab}"  FontSize="12"/>
         </TabItem>
-        <TabItem Header="&#xf1ec; Statements" Padding="20,5" FontFamily="{StaticResource FontAwesome}">
+        <TabItem Header="&#xf1ec; Statements" Padding="20,5" FontFamily="{StaticResource FontAsimov}">
             <Views:StatementView DataContext="{Binding StatementTab}"  FontSize="12"/>
         </TabItem>
-        <TabItem Header="&#xf0ad; Services" Padding="20,5" FontFamily="{StaticResource FontAwesome}">
+        <TabItem Header="&#xf0ad; Services" Padding="20,5" FontFamily="{StaticResource FontAsimov}">
             <Views:ServiceView DataContext="{Binding ServiceTab}"  FontSize="12"/>
         </TabItem>
-        <TabItem Header="&#xf1ad; Customers" Padding="20,5" FontFamily="{StaticResource FontAwesome}">
+        <TabItem Header="&#xf1ad; Customers" Padding="20,5" FontFamily="{StaticResource FontAsimov}">
             <Views:CustomerView DataContext="{Binding CustomersTab}"  FontSize="12"/>
         </TabItem>
 
