@@ -11,7 +11,9 @@
 
 using System;
 using System.Configuration;
+using SimpleAR.Controllers;
 using SimpleAR.Factories;
+using SimpleAR_DAL.DBModels;
 using SimpleAR_DAL.Managers;
 
 namespace SimpleAR.ViewModels
@@ -84,7 +86,7 @@ namespace SimpleAR.ViewModels
         /// </exception>
         private void IntializeStatements()
         {
-            var controller = ControllerFactory.CreateStatementController();
+            var controller = new StatementController();
             StatementTab = ViewModelFactory.CreateStatementViewModel(controller);
         }
 
@@ -93,7 +95,7 @@ namespace SimpleAR.ViewModels
         /// </summary>
         private void InitializeServiceTab()
         {
-            var controller = ControllerFactory.CreateServiceController();
+            var controller = new ServiceController();
             ServiceTab = ViewModelFactory.CreateServiceViewModel(controller);
         }
 
@@ -102,7 +104,7 @@ namespace SimpleAR.ViewModels
         /// </summary>
         private void InitializeCustomerTab()
         {
-            var controller = ControllerFactory.CreateCustomerController();
+            var controller = new CustomerController();
             CustomersTab = ViewModelFactory.CreateCustomerViewModel(controller);
         }
 
@@ -111,7 +113,7 @@ namespace SimpleAR.ViewModels
         /// </summary>
         private void InitializeLedgerTab()
         {
-            var controller = ControllerFactory.CreateLedgerController();
+            var controller = new LedgerController();
             LedgerTab = ViewModelFactory.CreateLedgerViewModel(controller);
 
         }
